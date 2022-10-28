@@ -1,4 +1,4 @@
-# CryptoTracker
+# CryptoTracker - frontend
 
 **Tim 156: Luka Brodarič i Alen Orbanić <br />**
 [Sveučilište Jurja Dobrile u Puli](https://www.unipu.hr/)<br />
