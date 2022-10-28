@@ -13,7 +13,7 @@ CryptoTracker je aplikacija zamišljena da se unutar nje vrlo jednostavno mogu p
 ### Autori i zaduženja
 
 - **Luka Brodarič** (lbrodaric@unipu.hr) - redizajn frontenda aplikacije, izarada sidebar-a, promjena api-a za aktualne novosti, izrada backend-a pomoću MongoDB-a
-- **Alen Orbanić** (aorbanic@unipu.hr) - implementaciija dark theme-a, mogučnost uređenja profila korisnika, dodavanje api-a za cijenu kriptovaluta, izrada backend-a pomoću MongoDB-a
+- **Alen Orbanić** (aorbanic@unipu.hr) - implementaciija dark theme-a, mogučnost uređenja profila korisnika, dodavanje api-a za cijenu kriptovaluta te admin panel-a, izrada backend-a pomoću MongoDB-a
 
 ### Prototip aplikacije
 
