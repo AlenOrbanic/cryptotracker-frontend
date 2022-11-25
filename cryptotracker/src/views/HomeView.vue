@@ -20,6 +20,8 @@
           <a href="#about">About</a>
           <a href="#review">Review</a>
           <a href="#contact">Contact</a>
+          <a></a>
+          <a href="#login" class="log-btn">Login</a>
       </nav>
   
   </header>
@@ -37,7 +39,7 @@
       </div>
   
       <div class="image">
-          <img src="@/assets/lp-img-2.png" alt="">
+          <img src="@/assets/lp-img-4.png" alt="">
       </div>
   
   </section>
@@ -54,23 +56,23 @@
   
           <div class="box">
               <img src="@/assets/images/f-icon1.png" alt="">
-              <h3>Build up your crypto portfolio</h3>
+              <h3>Build up your perfect crypto portfolio</h3>
               <p>We offer bunch off different crypto currencies you can choose from.</p>
-              <a href="#" class="btn">read more</a>
+              <a href="#" class="btn">Read more</a>
           </div>
   
           <div class="box">
               <img src="@/assets/images/f-icon2.png" alt="">
               <h3>Add reminders for price changes</h3>
               <p>Add a reminders for price changes and keep track on everything.</p>
-              <a href="#" class="btn">read more</a>
+              <a href="#" class="btn">Read more</a>
           </div>
   
           <div class="box">
               <img src="@/assets/images/f-icon3.png" alt="">
               <h3>Stay up to date with latest news</h3>
               <p>We offer majority of latest crypto related news so you always stay up to date.</p>
-              <a href="#" class="btn">read more</a>
+              <a href="#" class="btn">Read more</a>
           </div>
   
       </div>
@@ -92,13 +94,9 @@
           </div>
   
           <div class="content">
-              <h3>Easy And Perfect Solution For Your Business App</h3>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla placeat deserunt saepe repudiandae veniam soluta minima dolor hic aperiam iure.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quaerat. Dolorem ratione saepe magni quo inventore porro ab voluptates eos, nam eius provident accusantium, quia similique est, repellendus et reiciendis.</p>
-              <div class="buttons">
-                  <a href="#" class="btn"> <i class="fab fa-apple"></i> app store </a>
-                  <a href="#" class="btn"> <i class="fab fa-google-play"></i> google-play </a>
-              </div>
+              <h3>Easy and perfect solution for your <span>Crypto</span> portfolio</h3>
+              <p>CryptoTracker is a free to use crypto portfolio that gives you personalized crypto news, analytics, and ability to add reminders for price changes.</p>
+              <p>In addition you will get charts showing the price movement of each coin. CryptoTracker is available on both desktop  and smartphones. With CryptoTracker, you'll never miss a great opportunity to invest in the most profitable cryptocurrency!</p>
           </div>
   
       </div>
@@ -112,7 +110,7 @@
   <div class="newsletter">
   
       <h3>Subscribe For New Features</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus sed aliquam quibusdam neque magni magnam est laborum doloribus, facere dolores.</p>
+      <p>Stay up to date with our latest updates, and changes on the app. We won't spam you, we promise!</p>
       <form action="">
           <input type="email" placeholder="enter your email">
           <input type="submit" value="Subscribe">
@@ -145,12 +143,81 @@
                   </div>
               </div>
           </div>
+
+          <div class="box">
+              <i class="fas fa-quote-right"></i>
+              <div class="user">
+                  <img src="@/assets/images/pic2.png" alt="">
+                  <h3>Alen O.</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="comment">
+                      CryptoTracker is the best crypto portfolio app in the market. My favorite are reminders for price. 
+                  </div>
+              </div>
+          </div>
+          <div class="box">
+              <i class="fas fa-quote-right"></i>
+              <div class="user">
+                  <img src="@/assets/images/pic3.png" alt="">
+                  <h3>Mihael B.</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="comment">
+                    This app allows me to check my portfolio values from my smartphone where I want and when I want to. 
+                  </div>
+              </div>
+          </div>
+          <div class="box">
+              <i class="fas fa-quote-right"></i>
+              <div class="user">
+                  <img src="@/assets/images/lugi.jpg" alt="">
+                  <h3>Karlo L.</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="comment">
+                    The interface in CryptoTracker is easy to navigate and I find everything I need quickly. 
+                  </div>
+              </div>
+          </div>
+          <div class="box">
+              <i class="fas fa-quote-right"></i>
+              <div class="user">
+                  <img src="@/assets/images/pic3.png" alt="">
+                  <h3>Josip S.</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="comment">
+                      Really friendly app. I'm able to check everything I need in very short period. Perfect.
+                  </div>
+              </div>
+          </div>
   
           <div class="box">
               <i class="fas fa-quote-right"></i>
               <div class="user">
                   <img src="@/assets/images/pic2.png" alt="">
-                  <h3>john deo</h3>
+                  <h3>Thomas S.</h3>
                   <div class="stars">
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
@@ -159,7 +226,7 @@
                       <i class="fas fa-star-half-alt"></i>
                   </div>
                   <div class="comment">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate expedita officiis obcaecati?
+                      I've tried a lot of apps with a simillar purpose but this is by far the best. Easy to use and beautiful graphics.
                   </div>
               </div>
           </div>
@@ -168,27 +235,29 @@
               <i class="fas fa-quote-right"></i>
               <div class="user">
                   <img src="@/assets/images/pic3.png" alt="">
-                  <h3>john deo</h3>
+                  <h3>Alan B.</h3>
                   <div class="stars">
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>
+                      <i class="fas fa-star"></i>
                   </div>
                   <div class="comment">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate expedita officiis obcaecati?
+                      This app is really easy to use. A personal favorite feature are the reminders for price changes.
                   </div>
               </div>
           </div>
   
       </div>
-  
+
+
+    
   </section>
   
   <!-- review section ends -->
   
-  <!-- pricing section starts  -->
+  <!-- pricing section starts 
   
   <section class="pricing" id="pricing">
   
@@ -236,7 +305,7 @@
   
   </section>
   
-  <!-- pricing section ends -->
+ pricing section ends -->
   
   <!-- contact section starts  -->
   
@@ -252,12 +321,12 @@
   
           <div class="inputBox">
               <input type="text" required>
-              <label>name</label>
+              <label>Name</label>
           </div>
   
           <div class="inputBox">
               <input type="email" required>
-              <label>email</label>
+              <label>Email</label>
           </div>
   
           <div class="inputBox">
@@ -267,10 +336,10 @@
   
           <div class="inputBox">
               <textarea required name="" id="" cols="30" rows="10"></textarea>
-              <label>message</label>
+              <label>Message</label>
           </div>
   
-          <input type="submit" class="btn" value="send message">
+          <input type="submit" class="btn" value="Send message">
   
       </form>
   
@@ -285,25 +354,25 @@
       <div class="box-container">
   
           <div class="box">
-              <h3>about us</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet pariatur rerum consectetur architecto ad tempora blanditiis quo aliquid inventore a.</p>
+              <h3>About us</h3>
+              <p>At CryptoTracker we want to provide high quality app for our users. We want to deliver latest news, price changes and keep everything up to date.</p>
           </div>
   
           <div class="box">
-              <h3>quick links</h3>
-              <a href="#">home</a>
-              <a href="#">features</a>
-              <a href="#">about</a>
-              <a href="#">review</a>         
-              <a href="#">contact</a>
+              <h3>Quick links</h3>
+              <a href="#">Home</a>
+              <a href="#">Features</a>
+              <a href="#">About</a>
+              <a href="#">Reviews</a>         
+              <a href="#">Contact</a>
           </div>
   
           <div class="box">
-              <h3>follow us</h3>
-              <a href="#">facebook</a>
-              <a href="#">instagram</a>
+              <h3>Follow us</h3>
+              <a href="#">Facebook</a>
+              <a href="#">Instagram</a>
               <a href="#">Linkedin</a>
-              <a href="#">twitter</a>
+              <a href="#">Twitter</a>
           </div>
   
           <div class="box">
@@ -324,7 +393,7 @@
   
       </div>
   
-      <h1 class="credit"> &copy; copyright @ 2022 by CryptoTracker</h1>
+      <h1 class="credit"> &copy; Copyright @ 2022 by CryptoTracker</h1>
   
   </div>
   
@@ -341,6 +410,8 @@
   </template>
  
   
+
+
   <style>
   
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
@@ -357,7 +428,7 @@
       box-sizing: border-box;
       text-decoration: none;
       outline: none; border:none;
-      text-transform: capitalize;
+      
   }
   
   *::selection{
@@ -375,12 +446,55 @@
   }
   
   section{
-      min-height: 100vh;
+      min-height: 80vh;
       padding:0 9%;
-      padding-top: 7.5rem;
-      padding-bottom: 2rem;
+      padding-top: 12rem;
+      padding-bottom: 5rem;
   }
   
+
+  .log-btn {
+      border-radius: 5rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding:.6rem 3rem;
+      border-radius: 5rem;
+      background:var(--gradient);
+      font-size: 1.7rem;
+      color:#fff !important;
+      cursor: pointer;
+      transition: all 0.5s;
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+  }
+
+
+.log-btn{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.log-btn:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;  
+ 
+  right: -20px;
+  transition: 0.5s;
+}
+
+.log-btn:hover{
+  padding-right: 34px;
+
+}
+
+.log-btn:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
+
   .btn{
       display: inline-block;
       margin-top: 1rem;
@@ -407,6 +521,7 @@
       font-size: 3.5rem;
       text-transform: uppercase;
       padding:1rem;
+      padding-bottom: 4rem;
   }
   
   header{
@@ -461,6 +576,8 @@
       background-size: cover;
       background-position: center;
   }
+  
+
   
   .home .image img{
       width:40vw;
@@ -520,7 +637,7 @@
   .features .box-container .box h3{
       font-size: 2rem;
       color:#333;
-      padding-top: 1rem;
+      padding-top: 3rem;
   }
   
   .features .box-container .box p{
@@ -989,5 +1106,6 @@
       }
   
   }
-  
+
+
   </style>

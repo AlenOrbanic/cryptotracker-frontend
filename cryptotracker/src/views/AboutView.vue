@@ -32,7 +32,7 @@
     
         <div class="content">
             <h3>best crypto <span>portfolio</span> app</h3>
-            <p>Create an account and complete the verification process to secure your account.</p>
+            <p>We offer bunch off different crypto currencies you can choose from.</p>
             <a href="#" class="btn">Try now!</a>
         </div>
     
@@ -54,8 +54,8 @@
     
             <div class="box">
                 <img src="@/assets/images/f-icon1.png" alt="">
-                <h3>Build up your crypto portfolio</h3>
-                <p>We offer bunch off different crypto currencies you can choose from.</p>
+                <h3>Build up your crypto perfect portfolio</h3>
+                <p>Create an account and complete the verification process to secure your account.</p>
                 <a href="#" class="btn">read more</a>
             </div>
     
