@@ -1,993 +1,325 @@
 <template>
-
-   
-
-
-    <body>
-        
-    <!-- header section starts  -->
-    
-    <header>
-    
-        <a href="#" class="logo"><span>Crypto</span>Tracker</a>
-    
-        <input type="checkbox" id="menu-bar">
-        <label for="menu-bar" class="fas fa-bars"></label>
-    
-        <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-            <a href="#review">Review</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    
-    </header>
-    
-    <!-- header section ends -->
-    
-    <!-- home section starts  -->
-    
-    <section class="home" id="home">
-    
-        <div class="content">
-            <h3>best crypto <span>portfolio</span> app</h3>
-            <p>We offer bunch off different crypto currencies you can choose from.</p>
-            <a href="#" class="btn">Try now!</a>
+  
+    <div class="container" :class="rightpanel" id="container">
+      <div class="form-container sign-up-container">
+        <div
+          v-if="errorMessage !== ''"
+          class="alert alert-danger position-absolute"
+          role="alert"
+        >
+          {{ errorMessage }}
         </div>
-    
-        <div class="image">
-            <img src="@/assets/lp-img-2.png" alt="">
+        <div
+          v-if="successMessage !== ''"
+          class="alert alert-success"
+          role="alert"
+        >
+          {{ successMessage }}
         </div>
-    
-    </section>
-    
-    <!-- home section ends -->
-    
-    <!-- features section starts  -->
-    
-    <section class="features" id="features">
-    
-        <h1 class="heading"> app features </h1>
-    
-        <div class="box-container">
-    
-            <div class="box">
-                <img src="@/assets/images/f-icon1.png" alt="">
-                <h3>Build up your crypto perfect portfolio</h3>
-                <p>Create an account and complete the verification process to secure your account.</p>
-                <a href="#" class="btn">read more</a>
-            </div>
-    
-            <div class="box">
-                <img src="@/assets/images/f-icon2.png" alt="">
-                <h3>Add reminders for price changes</h3>
-                <p>Add a reminders for price changes and keep track on everything.</p>
-                <a href="#" class="btn">read more</a>
-            </div>
-    
-            <div class="box">
-                <img src="@/assets/images/f-icon3.png" alt="">
-                <h3>Stay up to date with latest news</h3>
-                <p>We offer majority of latest crypto related news so you always stay up to date.</p>
-                <a href="#" class="btn">read more</a>
-            </div>
-    
-        </div>
-    
-    </section>
-    
-    <!-- features section ends -->
-    
-    <!-- about section starts  -->
-    
-    <section class="about" id="about">
-    
-        <h1 class="heading"> about the app </h1>
-    
-        <div class="column">
-    
-            <div class="image">
-                <img src="@/assets/images/about-img.png" alt="">
-            </div>
-    
-            <div class="content">
-                <h3>Easy And Perfect Solution For Your Business App</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla placeat deserunt saepe repudiandae veniam soluta minima dolor hic aperiam iure.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quaerat. Dolorem ratione saepe magni quo inventore porro ab voluptates eos, nam eius provident accusantium, quia similique est, repellendus et reiciendis.</p>
-                <div class="buttons">
-                    <a href="#" class="btn"> <i class="fab fa-apple"></i> app store </a>
-                    <a href="#" class="btn"> <i class="fab fa-google-play"></i> google-play </a>
-                </div>
-            </div>
-    
-        </div>
-    
-    </section>
-    
-    <!-- about section ends -->
-    
-    <!-- newsletter  -->
-    
-    <div class="newsletter">
-    
-        <h3>Subscribe For New Features</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus sed aliquam quibusdam neque magni magnam est laborum doloribus, facere dolores.</p>
-        <form action="">
-            <input type="email" placeholder="enter your email">
-            <input type="submit" value="Subscribe">
+        <form action="#" @submit.prevent="signupRequest" id="signup-form">
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <a href="https://www.facebook.com/" class="social"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.google.com/" class="social"
+              ><i class="fab fa-google-plus-g"></i
+            ></a>
+            <a href="https://www.linkedin.com/" class="social"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+          <span>using your email for registration</span>
+          <input type="text" v-model="username" placeholder="Username" />
+          <input type="email" id="regmail" v-model="email" placeholder="Email" />
+          <input
+            type="password"
+            id="regpassword"
+            v-model="password"
+            placeholder="Password"
+          />
+          <button
+            v-bind:disabled="xhrRequest"
+            v-bind:class="{ disabled: xhrRequest }"
+          >
+            <span v-if="!xhrRequest">Sign Up</span>
+            <span v-if="xhrRequest">Please Wait...</span>
+          </button>
         </form>
-    
-    </div>
-    
-    <!-- review section starts  -->
-    
-    <section class="review" id="review">
-    
-        <h1 class="heading"> people's review </h1>
-    
-        <div class="box-container">
-    
-            <div class="box">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="@/assets/images/pic1.jpg" alt="">
-                    <h3>Luka B.</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="comment">
-                        CryptoTracker is fantastic app, and I really love to use it. I would recommend it to everyone!
-                    </div>
-                </div>
-            </div>
-    
-            <div class="box">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="@/assets/images/pic2.png" alt="">
-                    <h3>john deo</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <div class="comment">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate expedita officiis obcaecati?
-                    </div>
-                </div>
-            </div>
-    
-            <div class="box">
-                <i class="fas fa-quote-right"></i>
-                <div class="user">
-                    <img src="@/assets/images/pic3.png" alt="">
-                    <h3>john deo</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <div class="comment">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus et, perspiciatis nisi tempore aspernatur accusantium sed distinctio facilis aperiam laborum autem earum repellat, commodi eum. Ullam cupiditate expedita officiis obcaecati?
-                    </div>
-                </div>
-            </div>
-    
+      </div>
+      <div class="form-container sign-in-container">
+        <div
+          v-if="errorMessage !== ''"
+          class="alert alert-danger position-absolute"
+          role="alert"
+        >
+          {{ errorMessage }}
         </div>
-    
-    </section>
-    
-    <!-- review section ends -->
-    
-    <!-- pricing section starts  -->
-    
-    <section class="pricing" id="pricing">
-    
-        <h1 class="heading"> Our Pricing Plans </h1>
-    
-        <div class="box-container">
-    
-            <div class="box">
-                <h3 class="title">basic</h3>
-                <div class="price">$10<span>/monthly</span></div>
-                <ul>
-                    <li> <i class="fas fa-check"></i> 1000+ downloads </li>
-                    <li> <i class="fas fa-check"></i> No transaction fees </li>
-                    <li> <i class="fas fa-times"></i> unlimited storage </li>
-                    <li> <i class="fas fa-times"></i> 5 downloads </li>
-                </ul>
-                <a href="#" class="btn">check out</a>
-            </div>
-    
-            <div class="box">
-                <h3 class="title">standard</h3>
-                <div class="price">$15<span>/monthly</span></div>
-                <ul>
-                    <li> <i class="fas fa-check"></i> 1000+ downloads </li>
-                    <li> <i class="fas fa-check"></i> No transaction fees </li>
-                    <li> <i class="fas fa-check"></i> unlimited storage </li>
-                    <li> <i class="fas fa-times"></i> 5 downloads </li>
-                </ul>
-                <a href="#" class="btn">check out</a>
-            </div>
-    
-            <div class="box">
-                <h3 class="title">premium</h3>
-                <div class="price">$25<span>/monthly</span></div>
-                <ul>
-                    <li> <i class="fas fa-check"></i> 1000+ downloads </li>
-                    <li> <i class="fas fa-check"></i> No transaction fees </li>
-                    <li> <i class="fas fa-check"></i> unlimited storage </li>
-                    <li> <i class="fas fa-check"></i> 5 downloads </li>
-                </ul>
-                <a href="#" class="btn">check out</a>
-            </div>
-    
+        <div
+          v-if="successMessage !== ''"
+          class="alert alert-success"
+          role="alert"
+        >
+          {{ successMessage }}
         </div>
-    
-    </section>
-    
-    <!-- pricing section ends -->
-    
-    <!-- contact section starts  -->
-    
-    <section class="contact" id="contact">
-    
-        <div class="image">
-            <img src="@/assets/images/contact1.png" alt="">
-        </div>
-    
-        <form action="">
-    
-            <h1 class="heading">contact us</h1>
-    
-            <div class="inputBox">
-                <input type="text" required>
-                <label>name</label>
-            </div>
-    
-            <div class="inputBox">
-                <input type="email" required>
-                <label>email</label>
-            </div>
-    
-            <div class="inputBox">
-                <input type="title" required>
-                <label>Title</label>
-            </div>
-    
-            <div class="inputBox">
-                <textarea required name="" id="" cols="30" rows="10"></textarea>
-                <label>message</label>
-            </div>
-    
-            <input type="submit" class="btn" value="send message">
-    
+        <form action="#" @submit.prevent="loginRequest" id="login-form">
+          <h1>Sign in</h1>
+          <div class="social-container">
+            <a href="https://www.facebook.com/" class="social"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.google.com/" class="social"
+              ><i class="fab fa-google-plus-g"></i
+            ></a>
+            <a href="https://www.linkedin.com/" class="social"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+          <span>using your account</span>
+          <input type="email" placeholder="Email" v-model="email" id="email" />
+          <input
+            type="password"
+            placeholder="Password"
+            v-model="password"
+            id="password"
+          />
+          <a href="#">Forgot your password?</a>
+          <button
+            v-bind:disabled="xhrRequest"
+            v-bind:class="{ disabled: xhrRequest }"
+            class="btn btn-lg btn-primary px-4"
+          >
+            <span v-if="!xhrRequest">Login</span>
+            <span v-if="xhrRequest">Please Wait...</span>
+          </button>
         </form>
-    
-    </section>
-    
-    <!-- contact section edns -->
-    
-    <!-- footer section starts  -->
-    
-    <div class="footer">
-    
-        <div class="box-container">
-    
-            <div class="box">
-                <h3>about us</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet pariatur rerum consectetur architecto ad tempora blanditiis quo aliquid inventore a.</p>
-            </div>
-    
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#">home</a>
-                <a href="#">features</a>
-                <a href="#">about</a>
-                <a href="#">review</a>         
-                <a href="#">contact</a>
-            </div>
-    
-            <div class="box">
-                <h3>follow us</h3>
-                <a href="#">facebook</a>
-                <a href="#">instagram</a>
-                <a href="#">Linkedin</a>
-                <a href="#">twitter</a>
-            </div>
-    
-            <div class="box">
-                <h3>contact info</h3>
-                <div class="info">
-                    <i class="fas fa-phone"></i>
-                    <p> +123-456-7890 <br> +111-2222-333 </p>
-                </div>
-                <div class="info">
-                    <i class="fas fa-envelope"></i>
-                    <p> info@cryptotracker.com <br> help@cryptotracker.com </p>
-                </div>
-                <div class="info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p> Pula, Croatia</p>
-                </div>
-            </div>
-    
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>
+              To keep using CryptoTracker please login with your personal info
+            </p>
+            <button class="ghost" @click="removerightpanel" id="signIn">
+              Sign In
+            </button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>
+              Enter your personal details and start journey with CryptoTracker
+            </p>
+            <button class="ghost" @click="addrightpanel" id="signUp">
+              Sign Up
+            </button>
+          </div>
         </div>
-    
-        <h1 class="credit"> &copy; copyright @ 2022 by CryptoTracker</h1>
-    
+      </div>
     </div>
-    
-    <!-- footer section ends -->
-    
-    
-    
-    
-    
-    
-    </body>
-    
-    
-    </template>
-   
-    
-    <style>
-    
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
-    
-    :root{
-        --purple: #0E538C;
-        --pink:#0B4870;
-        --gradient:linear-gradient(90deg, var(--purple), var(--pink));
-    }
-    
-    *{
-        font-family: 'Poppins', sans-serif;
-        margin:0; padding:0;
-        box-sizing: border-box;
-        text-decoration: none;
-        outline: none; border:none;
-        text-transform: capitalize;
-    }
-    
-    *::selection{
-        background:var(--pink);
-        color:#fff;
-    }
-    
-    html{
-        font-size: 62.5%;
-        overflow-x: hidden;
-    }
-    
-    body{
-        background:#f9f9f9;
-    }
-    
-    section{
-        min-height: 100vh;
-        padding:0 9%;
-        padding-top: 7.5rem;
-        padding-bottom: 2rem;
-    }
-    
-    .btn{
-        display: inline-block;
-        margin-top: 1rem;
-        padding:.8rem 3rem;
-        border-radius: 5rem;
-        background:var(--gradient);
-        font-size: 1.7rem;
-        color:#fff;
-        cursor: pointer;
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-        transition: all .3s linear;
-    }
-    
-    .btn:hover{
-        transform: scale(1.1);
-    }
-    
-    .heading{
-        text-align: center;
-        background:var(--gradient);
-        color:transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-        font-size: 3.5rem;
-        text-transform: uppercase;
-        padding:1rem;
-    }
-    
-    header{
-        position: fixed;
-        top:0; left:0;
-        width:100%;
-        background:#fff;
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-        padding:2rem 9%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 1000;
-    }
-    
-    header .logo{
-        font-size: 2rem;
-        color:var(--purple);
-    }
-    
-    header .logo span{
-        color:var(--pink);
-    }
-    
-    header .navbar a{
-        font-size: 1.7rem;
-        margin-left: 2rem;
-        color:var(--purple);
-    }
-    
-    header .navbar a:hover{
-        color:var(--pink);
-    }
-    
-    header input{
-        display: none;
-    }
-    
-    header label{
-        font-size: 3rem;
-        color:var(--purple);
-        cursor: pointer;
-        visibility: hidden;
-        opacity: 0;
-    }
-    
-    .home{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background:url(../assets/images/home-bg-img.png) no-repeat;
-        background-size: cover;
-        background-position: center;
-    }
-    
-    .home .image img{
-        width:40vw;
-        animation: float 3s linear infinite;
-    }
-    
-    @keyframes float{
-        0%, 100%{
-            transform: translateY(0rem);
-        }
-        50%{
-            transform: translateY(-3.5rem);
-        }
-    }
-    
-    .home .content h3{
-        font-size: 5.5rem;
-        color:#333;
-        text-transform: uppercase;
-    }
-    
-    .home .content h3 span{
-        color:var(--pink);
-        text-transform: uppercase;
-    }
-    
-    .home .content p{
-        font-size: 1.7rem;
-        color:#666;
-        padding:1rem 0;
-    }
-    
-    .features .box-container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .features .box-container .box{
-        flex:1 1 30rem;
-        background:#fff;
-        border-radius: .5rem;
-        border:.1rem solid rgba(0,0,0,.2);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-        margin:1.5rem;
-        padding:3rem 2rem;
-        border-radius: .5rem;
-        text-align: center;
-        transition: .2s linear;
-    }
-    
-    .features .box-container .box img{
-        height: 15rem;
-    }
-    
-    .features .box-container .box h3{
-        font-size: 2rem;
-        color:#333;
-        padding-top: 1rem;
-    }
-    
-    .features .box-container .box p{
-        font-size: 1.3rem;
-        color:#666;
-        padding: 1rem 0;
-    }
-    
-    .about{
-        background:url(../assets/images/about-bg.png) no-repeat;
-        background-size: cover;
-        background-position: center;
-        padding-bottom: 3rem;
-    }
-    
-    .about .column{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .about .column .image{
-        flex:1 1 40rem;
-    }
-    
-    .about .column .image img{
-        width:100%;
-    }
-    
-    .about .column .content{
-        flex:1 1 40rem;
-    }
-    
-    .about .column .content h3{
-        font-size: 3rem;
-        color:#666;
-    }
-    
-    .about .column .content p{
-        font-size: 1.5rem;
-        color:#666;
-        padding:1rem 0;
-    }
-    
-    .about .column .content .buttons a:last-child{
-        margin-left: 2rem;
-    }
-    
-    .newsletter{
-        text-align: center;
-        padding:5rem 1rem;
-        background:url(../assets/images/subscribe-bg.png) no-repeat;
-        background-size: cover;
-        background-position: center;
-    }
-    
-    .newsletter h3{
-        color:#fff;
-        font-size: 3rem;
-        text-transform: uppercase;
-    }
-    
-    .newsletter p{
-        color:#fff;
-        font-size: 1.6rem;
-        margin:2rem auto;
-        width:70rem;
-    }
-    
-    .newsletter form{
-        display: flex;
-        max-width: 70rem;
-        border:.2rem solid #fff;
-        padding:.5rem;
-        border-radius: 5rem;
-        margin:2rem auto;
-        height:5.5rem;
-    }
-    
-    .newsletter form input[type="email"]{
-        padding:0 2rem;
-        font-size: 1.7rem;
-        background:none;
-        width:100%;
-        color:#fff;
-        text-transform: none;
-        background:none;
-    }
-    
-    .newsletter form input[type="email"]::placeholder{
-        color:#eee;
-        text-transform: capitalize;
-    }
-    
-    .newsletter form input[type="submit"]{
-        background:#fff;
-        width:20rem;
-        font-size: 1.7rem;
-        border-radius: 5rem;
-        cursor: pointer;
-    }
-    
-    .newsletter form input[type="submit"]:hover{
-        color:var(--pink);
-    }
-    
-    .review .box-container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .review .box-container .box{
-        background:#fff;
-        margin:1rem;
-        padding:1rem;
-        text-align: center;
-        position: relative;
-        border:.1rem solid rgba(0,0,0,.2);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-        flex:1 1 30rem;
-        border-radius: .5rem;
-    }
-    
-    .review .box-container .box .fa-quote-right{
-        position: absolute;
-        top:1rem; right:2rem;
-        font-size: 8rem;
-        color:var(--pink);
-        opacity: .3;
-    }
-    
-    .review .box-container .box .user img{
-        border-radius: 50%;
-        object-fit: cover;
-        height: 7rem;
-        width:7rem;
-        margin-top: 2rem;
-    }
-    
-    .review .box-container .box .user h3{
-        color:var(--pink);
-        font-size: 2rem;
-    }
-    
-    .review .box-container .box .user .stars i{
-        color:var(--purple);
-        font-size: 1.5rem;
-        padding:1rem 0;
-    }
-    
-    .review .box-container .box .comment{
-        color:#666;
-        font-size: 1.4rem;
-        padding:1rem;
-    }
-    
-    .pricing .box-container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .pricing .box-container .box{
-        flex:1 1 27rem;
-        margin:1rem;
-        padding:1rem;
-        background:#fff;
-        border:.1rem solid rgba(0,0,0,.2);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-        border-radius: .5rem;
-        text-align: center;
-        padding-bottom: 3rem;
-    }
-    
-    .pricing .box-container .box:nth-child(2),
-    .pricing .box-container .box:hover{
-        border:.2rem solid var(--pink);
-    }
-    
-    .pricing .box-container .box .title{
-        color:var(--purple);
-        font-size: 2.5rem;
-        padding-top: 1rem;
-    }
-    
-    .pricing .box-container .box .price{
-        font-size: 4rem;
-        color:var(--pink);
-        padding:1rem 0;
-    }
-    
-    .pricing .box-container .box .price span{
-        font-size: 2rem;
-    }
-    
-    .pricing .box-container .box ul{
-        padding:1rem 0;
-        list-style: none;
-    }
-    
-    .pricing .box-container .box ul li{
-        font-size: 1.7rem;
-        color:#666;
-        padding:.5rem 0;
-    }
-    
-    .pricing .box-container .box ul li .fa-check{
-        color:lightgreen;
-    }
-    
-    .pricing .box-container .box ul li .fa-times{
-        color:tomato;
-    }
-    
-    .contact{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding-bottom: 4rem;
-    }
-    
-    .contact .image{
-        flex:1 1 40rem;
-    }
-    
-    .contact .image img{
-        width:100%;
-        padding:2rem;
-    }
-    
-    .contact form{
-        flex:1 1 40rem;
-        padding:2rem 3rem;
-        border:.1rem solid rgba(0,0,0,.2);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-        border-radius: .5rem;
-        background:#fff;
-    }
-    
-    .contact form .heading{
-        text-align: left;
-        padding:0;
-        padding-bottom: 2rem;
-    }
-    
-    .contact form .inputBox{
-        position: relative;
-    }
-    
-    .contact form .inputBox input, .contact form .inputBox textarea{
-        width:100%;
-        background:none;
-        color:#666;
-        margin:1.5rem 0;
-        padding:.5rem 0;
-        font-size: 1.7rem;
-        border-bottom: .1rem solid rgba(0,0,0,.1);
-        text-transform: none;
-    }
-    
-    .contact form .inputBox textarea{
-        resize: none;
-        height: 13rem;
-    }
-    
-    .contact form .inputBox label{
-        position: absolute;
-        top:1.7rem; left:0;
-        font-size: 1.7rem;
-        color:#666;
-        transition: .2s linear;
-    }
-    
-    .contact form .inputBox input:focus ~ label,
-    .contact form .inputBox input:valid ~ label,
-    .contact form .inputBox textarea:focus ~ label,
-    .contact form .inputBox textarea:valid ~ label{
-        top:-.5rem;
-        font-size: 1.5rem;
-        color:var(--pink);
-    }
-    
-    .footer{
-        padding-top: 3rem;
-        background:url(../assets/images/footer-bg.png) no-repeat;
-        background-size: cover;
-        background-position: center;
-    }
-    
-    .footer .box-container{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    .footer .box-container .box{
-        flex:1 1 25rem;
-        margin:2rem;
-    }
-    
-    .footer .box-container .box h3{
-        font-size: 2.5rem;
-        padding:1rem 0;
-        color:#fff;
-        text-decoration: underline;
-        text-underline-offset: 1rem;
-    }
-    
-    .footer .box-container .box p{
-        font-size: 1.5rem;
-        padding:.5rem 0;
-        color:#eee;
-    }
-    
-    .footer .box-container .box a{
-        display: block;
-        font-size: 1.5rem;
-        padding:.5rem 0;
-        color:#eee;
-    }
-    
-    .footer .box-container .box a:hover{
-        text-decoration: underline;
-    }
-    
-    .footer .box-container .box .info{
-        display: flex;
-        align-items: center;
-    }
-    
-    .footer .box-container .box .info i{
-        margin:.5rem 0;
-        margin-right: 1rem;
-        border-radius: 50%;
-        background:#fff;
-        color:var(--pink);
-        font-size: 1.5rem;
-        height:4.5rem;
-        width:4.5rem;
-        line-height: 4.5rem;
-        text-align: center;
-    }
-    
-    .footer .credit{
-        font-size: 2rem;
-        font-weight: normal;
-        letter-spacing: .1rem;
-        color:#fff;
-        border-top: .1rem solid #fff5;
-        padding:2.5rem 1rem;
-        text-align: center;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /* media queries  */
-    
-    @media (max-width:1200px){
-        
-        html{
-            font-size: 55%;
-        }
-    
-    }
-    
-    @media (max-width:991px){
-        
-        section{
-            padding:0 3%;
-            padding-top: 7.5rem;
-            padding-bottom: 2rem;
-        }
-    
-    }
-    
-    @media (max-width:768px){
-    
-        header label{
-            visibility: visible;
-            opacity: 1;
-        }
-    
-        header .navbar{
-            position: absolute;
-            top:100%; left: 0;
-            width:100%;
-            background:#fff;
-            padding:1rem 2rem;
-            border-top: .1rem solid rgba(0,0,0,.2);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-            transform-origin: top;
-            transform: scaleY(0);
-            opacity: 0;
-            transition: .2s linear;
-        }
-    
-        header .navbar a{
-            display: block;
-            margin:2rem 0;
-            font-size: 2rem;
-        }
-    
-        header input:checked ~ .navbar{
-            transform: scaleY(1);
-            opacity: 1;
-        }
-    
-        header input:checked ~ label::before{
-            content:'\f00d';
-        }
-    
-        .home{
-            flex-flow: column-reverse;
-        }
-    
-        .home .image img{
-            width:100%;
-        }
-    
-        .home .content h3{
-            font-size: 3.6rem;
-        }
-    
-        .home .content p{
-            font-size: 1.5rem;
-        }
-    
-        .about{
-            background-position: right;
-        }
-    
-        .newsletter p{
-            width:auto;
-        }
-    
-    }
-    
-    @media (max-width:450px){
-        
-        html{
-            font-size: 50%;
-        }
-    
-        .about .column .content .buttons a{
-            width:100%;
-            text-align: center;
-        }
-    
-        .about .column .content .buttons a:last-child{
-            margin: 1rem 0;
-        }
-    
-    }
-    
-    </style>
+  </template>
+  
+  <style scoped>
+  @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Montserrat", sans-serif;
+    background: #f6f5f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: -20px 0 50px;
+    margin-top: 20px;
+  }
+  h1 {
+    font-weight: bold;
+    margin: 0;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+  }
+  span {
+    font-size: 12px;
+  }
+  a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+  .container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 640px;
+    margin-top: 150px;
+  }
+  .form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .social-container {
+    margin: 20px 0;
+  }
+  .social-container a {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+  }
+  .form-container input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+  button {
+    border-radius: 20px;
+    border: 1px solid #0099ff;
+    background: #0099ff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+  button:active {
+    transform: scale(0.95);
+  }
+  button:focus {
+    outline: none;
+  }
+  button.ghost {
+    background: transparent;
+    border-color: #fff;
+  }
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+  .sign-up-container {
+    left: 0;
+    width: 50%;
+    z-index: 1;
+    opacity: 0;
+  }
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+  }
+  .overlay {
+    background: #0099ff;
+    background: linear-gradient(to right, #0099ff, #710ca0) no-repeat 0 0 / cover;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateY(0);
+    transition: transform 0.6s ease-in-out;
+  }
+  .overlay-panel {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.6s ease-in-out;
+  }
+  .overlay-right {
+    right: 0;
+    transform: translateY(0);
+  }
+  .overlay-left {
+    transform: translateY(-20%);
+  }
+  /* Move signin to right */
+  .container.right-panel-active .sign-in-container {
+    transform: translateY(100%);
+  }
+  /* Move overlay to left */
+  .container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+  }
+  /* Bring signup over signin */
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+  }
+  /* Move overlay back to right */
+  .container.right-panel-active .overlay {
+    transform: translateX(50%);
+  }
+  /* Bring back the text to center */
+  .container.right-panel-active .overlay-left {
+    transform: translateY(0);
+  }
+  /* Same effect for right */
+  .container.right-panel-active .overlay-right {
+    transform: translateY(20%);
+  }
+  .footer {
+    margin-top: 25px;
+    text-align: center;
+  }
+  .icons {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    letter-spacing: 15px;
+    align-items: center;
+  }
+
+  
+
+  
+  </style>
+
+<script>
+
+</script>

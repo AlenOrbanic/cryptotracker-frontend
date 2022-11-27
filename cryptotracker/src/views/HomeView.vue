@@ -1,6 +1,6 @@
 <template>
 
-   
+
 
 
   <body>
@@ -60,7 +60,7 @@
               <p>We offer bunch off different crypto currencies you can choose from.</p>
               <a href="#" class="btn">Read more</a>
           </div>
-  
+
           <div class="box">
               <img src="@/assets/images/f-icon2.png" alt="">
               <h3>Add reminders for price changes</h3>
@@ -408,11 +408,10 @@
   
   
   </template>
- 
   
 
-
   <style>
+  
   
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
   
@@ -652,6 +651,7 @@
       background-position: center;
       padding-bottom: 3rem;
   }
+  
   
   .about .column{
       display: flex;
@@ -1109,3 +1109,33 @@
 
 
   </style>
+
+
+
+  <script>
+
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
