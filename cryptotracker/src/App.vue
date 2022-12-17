@@ -31,3 +31,21 @@ nav {
   }
 }
 </style>
+
+<script>
+//import { defineComponent } from '@vue/composition-api'
+fetch("http://localhost:3000/posts")
+.then(response => {
+ return response.json()
+ })
+ .then(data => {
+ console.log("Podaci s backenda ", data)
+ })
+export default {
+  data: function () {
+    return {
+
+    };
+  },
+}
+</script>
