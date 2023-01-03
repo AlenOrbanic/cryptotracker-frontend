@@ -70,7 +70,7 @@
   
           <div class="box">
               <img src="@/assets/images/f-icon3.png" alt="">
-              <h3>Stay up to date with latest news</h3>
+              <h3>Stay up to date with latest </br> news</h3>
               <p>We offer majority of latest crypto related news so you always stay up to date.</p>
               <a href="#" class="btn">Read more</a>
           </div>
@@ -679,7 +679,7 @@
   
   .about .column .content p{
       font-size: 1.5rem;
-      color:#666;
+      color:#666666;
       padding:1rem 0;
   }
   
@@ -927,7 +927,7 @@
   
   .footer{
       padding-top: 3rem;
-      background:url(../assets/images/footer-bg.png) no-repeat;
+      background:url(../assets/images/footer-bg-2.png) no-repeat;
       background-size: cover;
       background-position: center;
   }
@@ -990,7 +990,7 @@
       font-weight: normal;
       letter-spacing: .1rem;
       color:#fff;
-      border-top: .1rem solid #fff5;
+      border-top: .1rem solid #ffffff55;
       padding:2.5rem 1rem;
       text-align: center;
   }

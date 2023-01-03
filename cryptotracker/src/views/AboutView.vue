@@ -321,5 +321,27 @@
   </style>
 
 <script>
-
+export default {
+  name: "AboutView",
+  data() {
+    return {
+      rightpanel: "",
+      username: "",
+      email: "",
+      password: "",
+      xhrRequest: false,
+      errorMessage: "",
+      successMessage: "",
+    };
+  },
+  methods: {
+    addrightpanel() {
+      this.rightpanel = "right-panel-active";
+    },
+    removerightpanel() {
+      this.rightpanel = "";
+    },
+    
+  },
+};
 </script>
