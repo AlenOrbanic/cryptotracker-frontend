@@ -1,19 +1,38 @@
-# cryptotracker
+## Install
 
-## Project setup
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## Run / Develop
+
 ```
 
-### Compiles and minifies for production
+npm run dev
+
 ```
+
+## Build
+
+```
+
 npm run build
+
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Preview
+
+```
+
+npm run preview
+
+```
+
+## Lint
+
+```
+
+npm run lint
+
+```
