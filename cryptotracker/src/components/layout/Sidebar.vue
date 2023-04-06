@@ -12,7 +12,7 @@ const routeName = computed(() => {
   <div class="left_bar" :class="[layout.mobile_menu ? 'active_bar' : '']">
     <!-- left bar start  -->
     <div class="main_logo">
-      <img src="../assets/img/main_logo.svg" alt="" />
+      <img src="@/assets/img/main_logo.svg" alt="" />
       <p>Crypto<span>Tracker</span></p>
     </div>
     <ul class="leftbar_wrap">

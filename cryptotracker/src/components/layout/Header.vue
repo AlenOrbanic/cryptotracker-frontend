@@ -14,18 +14,18 @@ const layout = useLayoutStore();
 
         <div class="form_group">
           <input type="text" class="form-control" placeholder="Search..." />
-          <img src="../assets/img/search_icon.svg" alt="" />
+          <img src="@/assets/img/search_icon.svg" alt="" />
         </div>
         <div class="nav_profile">
           <div class="d-flex align-items-center">
-            <img src="../assets/img/nav_dp.png" alt="" class="nav_pic" />
+            <img src="@/assets/img/nav_dp.png" alt="" class="nav_pic" />
             <div class="flex_align flex-column">
               <h6 class="fw_700">Luka Brodarič</h6>
               <span>lbrodaric@unipu.hr</span>
             </div>
           </div>
           <img
-            src="../assets/img/vertical_dots.svg"
+            src="@/assets/img/vertical_dots.svg"
             alt=""
             class="vertical_dots"
           />
