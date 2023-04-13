@@ -18,7 +18,7 @@ const routeName = computed(() => {
     <ul class="leftbar_wrap">
       <!-- <li class="active_nav"> -->
       <li :class="[routeName == 'dashboard' ? 'active_nav' : '']">
-        <RouterLink to="/" @click="layout.deactive_mobile_menu()"
+        <RouterLink to="/dashboard" @click="layout.deactive_mobile_menu()"
           ><svg
             width="16"
             height="16"
@@ -137,7 +137,7 @@ const routeName = computed(() => {
         >
       </li>
       <li>
-        <RouterLink to="/" @click="layout.deactive_mobile_menu()"
+        <RouterLink to="#" @click="layout.deactive_mobile_menu()"
           ><svg
             width="16"
             height="16"

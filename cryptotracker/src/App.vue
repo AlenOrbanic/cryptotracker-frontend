@@ -1,21 +1,22 @@
 <script setup>
-import { RouterView } from "vue-router";
-import Sidebar from "./components/layout/Sidebar.vue";
-import Header from "./components/layout/Header.vue";
+import { computed,ref } from "vue";
+import AppLayout from './layout/app-layout.vue'
+import LandingPage from './layout/landing_page.vue'
+import { useLayoutStore } from './stores/layout';
+const store = useLayoutStore();
+
+// const layout = "app"
+const layout = computed(() => store.get_layout );
+
 </script>
 
 <template>
-  <div class="main_page">
-    <div class="d-flex">
-      <!-- left bar start  -->
-      <Sidebar />
-      <!-- left bar end -->
-      <!-- navbar start  -->
-      <div class="page_body">
-        <!-- navbar end -->
-        <Header />
-        <RouterView />
-      </div>
-    </div>
+  <div>
+    <!-- <AppLayout v-if="layout !== 'auth'" />
+
+    <LandingPage v-else  /> -->
+
+    <LandingPage v-if="layout == 'auth' " />
+    <AppLayout v-else />
   </div>
 </template>

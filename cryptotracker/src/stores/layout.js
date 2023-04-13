@@ -4,9 +4,11 @@ export const useLayoutStore = defineStore({
   id: "layout",
   state: () => ({
     mobile_menu: false,
+    layout: 'landing_page'
   }),
   getters: {
     get_mobile_menu: (state) => state.mobile_menu,
+    get_layout: (state) => state.layout,
   },
   actions: {
     toggle_mobile_menu() {
@@ -22,5 +24,9 @@ export const useLayoutStore = defineStore({
     deactive_mobile_menu() {
       this.mobile_menu = false;
     },
+
+    setLayout(layout) {
+      this.layout = layout;
+    }
   },
 });
