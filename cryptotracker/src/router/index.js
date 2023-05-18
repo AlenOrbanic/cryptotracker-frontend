@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-
+import userinfo from '../stores/userinfo'
 import Home from '../views/Dashboard.vue';
 import { useLayoutStore } from '../stores/layout';
 
@@ -32,6 +32,9 @@ const routes = [
     // this generates a separate chunk (Portfolio.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Portfolio.vue"),
+    meta: {
+      needsUser: true,
+    },
   },
   {
     path: "/news",
@@ -40,6 +43,9 @@ const routes = [
     // this generates a separate chunk (News.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/News.vue"),
+    meta: {
+      needsUser: true,
+    },
   },
   {
     path: "/profile",
@@ -48,6 +54,9 @@ const routes = [
     // this generates a separate chunk (Profile.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Profile.vue"),
+    meta: {
+      needsUser: true,
+    },
   },
   {
     path: "/settings",
@@ -56,6 +65,9 @@ const routes = [
     // this generates a separate chunk (Settings.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Settings.vue"),
+    meta: {
+      needsUser: true,
+    },
   },
   {
     path: "/calculator",
@@ -64,6 +76,9 @@ const routes = [
     // this generates a separate chunk (Calculator.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Calculator.vue"),
+    meta: {
+      needsUser: true,
+    },
   },
     
 ];
@@ -83,5 +98,50 @@ router.beforeEach((to, from, next) => {
     }
     next(true);
 });
+
+setTimeout(() => {
+  router.beforeEach((to, from, next) => {
+
+    const store = useLayoutStore();
+    if (to.meta && to.meta.layout && to.meta.layout == 'auth') {
+        store.setLayout('auth');
+    } else {
+      store.setLayout('app');
+    }
+
+    console.log(
+      "Stara ruta",
+      from.name,
+      " -> ",
+      to.name,
+      "korisnik",
+      userinfo.currentUser
+    );
+    const noUser = userinfo.currentUser === null;
+    if(!noUser){
+      console.log(to.name, "aaaaa");
+    }
+    if(to.name==="adminpanel"){
+      if(userinfo.admin){
+        next();
+      }
+      else{ next(false);
+      console.log("Nemas admin perms");
+      }
+    }
+    if (noUser && to.meta.needsUser) {
+      // ako korisnik nije logiran, a stranica zahtjeva login
+      console.log("Logiraj se prvo!");
+      next("login");
+    } else {
+      next();
+    }
+    if (!noUser && !to.meta.needsUser) {
+      // ako je korisnik logiran, a stranica ne zahtjeva login
+      console.log(userinfo.currentUser);
+      next("Home");
+    }
+  });
+}, 2000);
 
 export default router;

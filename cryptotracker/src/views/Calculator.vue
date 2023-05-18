@@ -16,8 +16,8 @@
                 class="form-control"
                 placeholder="Amount in USD"
               />
-              <a href="" class="main_btn flex_align mt-0">Update</a>
-              <a href="" class="main_btn flex_align"
+              <a href="" class="main_btn flex_align mt-0">Calculate!</a>
+              <a href="https://www.coinbase.com" class="main_btn flex_align"
                 >BUY CRYPTO HERE
                 <img src="../assets/img/right_arrow.png" alt=""
               /></a>
