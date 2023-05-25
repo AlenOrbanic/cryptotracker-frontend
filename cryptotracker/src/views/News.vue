@@ -63,3 +63,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default{
+  name:"news",
+  created() {
+    setTimeout(() => {
+      console.log("Šljaka");
+    }, 2000);
+  },
+}
+</script>

@@ -1,10 +1,10 @@
 <template>
-    ok
+<p>Hiiiiiiii</p>
 </template>
 
 <script>
 import userinfo from "../stores/userinfo";
-import router from "@/router";
+import router from "../router";
 export default {
   name: "adminpanel",
   data: function () {
@@ -14,6 +14,7 @@ export default {
   },
 mounted(){
   setTimeout(()=>{
+      console.log("JA RADIM!!!!!!");
     const admin = userinfo.currentUser === "adminn@gmail.com";
     console.log(userinfo.currentUser);
       if(!admin){

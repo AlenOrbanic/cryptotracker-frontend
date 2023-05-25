@@ -125,3 +125,14 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+export default{
+name: "portfolio",
+created() {
+    setTimeout(() => {
+      console.log("JA RADIM!!!!!!");
+    }, 2000);
+  },
+}
+</script>
