@@ -28,17 +28,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-
-
-export default ({
-name:"Calculator",
-created(){
-  setTimeout(() => {
-      console.log("JA RADIM!!!!!!");
-    }, 2000);
-}
-})
-</script>
-

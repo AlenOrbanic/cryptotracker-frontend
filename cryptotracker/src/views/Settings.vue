@@ -1,3 +1,9 @@
+<script setup>
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+const notifications = ref(false);
+const collapseOne = ref(false);
+const collapseTwo = ref(false);
+</script>
 <template>
   <div class="container">
     <div class="profile_info mt-md-4 mt-2">
@@ -36,7 +42,12 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                aliquam erat id faucibus porta. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Etiam
+                fringilla orci et felis rhoncus, eget dignissim purus euismod.
+                Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.
               </h6>
             </div>
           </div>
@@ -106,7 +117,12 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                aliquam erat id faucibus porta. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Etiam
+                fringilla orci et felis rhoncus, eget dignissim purus euismod.
+                Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.
               </h6>
             </div>
           </div>
@@ -134,7 +150,12 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                aliquam erat id faucibus porta. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Etiam
+                fringilla orci et felis rhoncus, eget dignissim purus euismod.
+                Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.
               </h6>
             </div>
           </div>
@@ -162,7 +183,12 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                aliquam erat id faucibus porta. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Etiam
+                fringilla orci et felis rhoncus, eget dignissim purus euismod.
+                Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.
               </h6>
             </div>
           </div>
@@ -190,7 +216,12 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                aliquam erat id faucibus porta. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Etiam
+                fringilla orci et felis rhoncus, eget dignissim purus euismod.
+                Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.
               </h6>
             </div>
           </div>
@@ -219,7 +250,12 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                aliquam erat id faucibus porta. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Etiam
+                fringilla orci et felis rhoncus, eget dignissim purus euismod.
+                Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.
               </h6>
             </div>
           </div>
@@ -228,36 +264,3 @@
     </div>
   </div>
 </template>
-<script>
-  import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-
-  const notifications = ref(false); // ON OFF BUTTON SAM POKVARIO!!!
-  const collapseOne = ref(false);
-  const collapseTwo = ref(false);
-
-  // Lifecycle hooks
-  onMounted(() => {
-    // Code to run when the component is mounted
-    // ...
-  });
-
-  onBeforeUnmount(() => {
-    // Code to run before the component is unmounted
-    // ...
-  });
-
-  // Computed properties
-  const computedProperty = computed(() => {
-    // Code for computed property
-    // ...
-  });
-
-  // Export variables or functions
-  export {
-    notifications,
-    collapseOne,
-    collapseTwo,
-    computedProperty,
-    // ... other variables or functions to export
-  };
-</script>

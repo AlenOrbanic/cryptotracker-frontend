@@ -1,3 +1,6 @@
+<script setup>
+import PortfolioCoin from "../components/PortfolioCoin.vue";
+</script>
 <template>
   <div class="portfolio_wrap">
     <div class="container">
@@ -92,14 +95,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import PortfolioCoin from "../components/PortfolioCoin.vue";
-
-export default {
-  components: {
-    PortfolioCoin
-  },
-  // Your component's options here...
-}
-</script>

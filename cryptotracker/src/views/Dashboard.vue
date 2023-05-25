@@ -1,3 +1,6 @@
+<script setup>
+import DashboardCoin from "../components/DashboardCoin.vue";
+</script>
 <template>
   <!-- coins balance start -->
   <section class="coins_wrap">
@@ -142,14 +145,3 @@
   </div>
   <!-- Assets news section end -->
 </template>
-
-<script>
-import DashboardCoin from "../components/DashboardCoin.vue";
-
-export default {
-  components: {
-    DashboardCoin
-  }
-}
-</script>
-
