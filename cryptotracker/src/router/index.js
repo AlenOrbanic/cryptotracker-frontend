@@ -80,7 +80,17 @@ const routes = [
       needsUser: true,
     },
   },
-    
+  {
+    path: "/adminpanel",
+    name: "adminpanel",
+    // route level code-splitting
+    // this generates a separate chunk (Calculator.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import("../views/adminpanel.vue"),
+    meta: {
+      needsUser: true,
+    },
+  }    
 ];
 
 const router = new createRouter({
