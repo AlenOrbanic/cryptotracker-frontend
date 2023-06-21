@@ -63,6 +63,7 @@
               <button
                 v-bind:disabled="xhrRequest"
                 v-bind:class="{ disabled: xhrRequest }"
+                @click="register"
               >
                 <span class="btn" v-if="!xhrRequest">Sign Up</span>
                 <span v-if="xhrRequest">Please Wait...</span>
@@ -412,27 +413,78 @@
       </style>
     
     <script>
+    import axios from 'axios';
+    import AuthenticationService from '../services/AuthenticationService';
+
     export default {
-      name: "AboutView",
+      name: 'Login',
       data() {
         return {
-          rightpanel: "",
-          username: "",
-          email: "",
-          password: "",
+          rightpanel: '',
+          email: '',
+          password: '',
           xhrRequest: false,
-          errorMessage: "",
-          successMessage: "",
+          errorMessage: '',
+          successMessage: ''
         };
       },
       methods: {
+        // Function to handle the login request
+        loginRequest() {
+          // Reset error and success messages
+          this.errorMessage = '';
+          this.successMessage = '';
+    
+          // Disable the login button while the request is being made
+          this.xhrRequest = true;
+    
+          // Make the login request to the backend
+          axios
+            .post('/api/login', {
+              email: this.email,
+              password: this.password
+            })
+            .then(response => {
+              // Reset the form fields
+              this.email = '';
+              this.password = '';
+    
+              // Store the token in localStorage or Vuex (depending on your setup)
+              const token = response.data.token;
+              // You can store the token in localStorage like this:
+              localStorage.setItem('token', token);
+    
+              // Display a success message
+              this.successMessage = 'Logged in successfully';
+    
+              // Enable the login button
+              this.xhrRequest = false;
+    
+              // Redirect to a new page or perform any other action
+              // Example:
+              // this.$router.push('/dashboard');
+            })
+            .catch(error => {
+              // Display an error message
+              this.errorMessage = 'Login failed. Please check your credentials.';
+    
+              // Enable the login button
+              this.xhrRequest = false;
+            });
+        },
         addrightpanel() {
-          this.rightpanel = "right-panel-active";
+          this.rightpanel = 'right-panel-active';
         },
         removerightpanel() {
-          this.rightpanel = "";
+          this.rightpanel = '';
         },
-        
-      },
+        async register(){
+          const response = await AuthenticationService.register({
+            email: this.email,
+            password: this.password
+          })
+          console.log(response.data);
+        }
+      }
     };
     </script>
