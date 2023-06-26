@@ -1,4 +1,6 @@
 export default {
-    currentUser:null,
+    username:null,
+    useremail:null,
+    userpassword:null,
     admin:false
 };

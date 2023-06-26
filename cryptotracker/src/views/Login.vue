@@ -85,7 +85,7 @@
             >
               {{ successMessage }}
             </div>
-            <form action="#" @submit.prevent="loginRequest" id="login-form">
+            <form action="#" @submit.prevent="login" id="login-form">
               <h1>Sign in</h1>
               <div class="social-container">
                 <a href="https://www.facebook.com/" class="social"
@@ -415,7 +415,6 @@
     <script>
     import axios from 'axios';
     import AuthenticationService from '../services/AuthenticationService';
-
     export default {
       name: 'Login',
       data() {
@@ -429,7 +428,35 @@
         };
       },
       methods: {
-        // Function to handle the login request
+      async login() {
+        const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await AuthenticationService.login({
+        email: this.email,
+        password: this.password,
+        config
+      })
+        console.log(response.data);
+    }
+  },
+        addrightpanel() {
+          this.rightpanel = 'right-panel-active';
+        },
+        removerightpanel() {
+          this.rightpanel = '';
+        },
+        async register(){
+          const response = await AuthenticationService.register({
+            email: this.email,
+            password: this.password
+          })
+          console.log(response.data);
+        }
+      };
+/*
         loginRequest() {
           // Reset error and success messages
           this.errorMessage = '';
@@ -471,20 +498,6 @@
               // Enable the login button
               this.xhrRequest = false;
             });
-        },
-        addrightpanel() {
-          this.rightpanel = 'right-panel-active';
-        },
-        removerightpanel() {
-          this.rightpanel = '';
-        },
-        async register(){
-          const response = await AuthenticationService.register({
-            email: this.email,
-            password: this.password
-          })
-          console.log(response.data);
-        }
-      }
-    };
+        }, 
+*/
     </script>
