@@ -10,6 +10,7 @@
 		"@popperjs/core": "^2.11.6",
 		"axios": "^1.4.0",
 		"bootstrap": "^5.2.3",
+		"mailtoui": "^1.0.3",
 		"pinia": "^2.0.22",
 		"vue": "^3.2.39",
 		"vue-router": "^4.1.5"

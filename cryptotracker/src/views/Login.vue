@@ -415,6 +415,7 @@
     <script>
     import axios from 'axios';
     import AuthenticationService from '../services/AuthenticationService';
+    import userinfo from '../stores/userinfo';
     export default {
       name: 'Login',
       data() {
@@ -429,6 +430,7 @@
       },
       methods: {
       async login() {
+        this.xhrRequest = true;
         const config = {
         headers: {
           'Content-Type': 'application/json'
@@ -439,10 +441,14 @@
         password: this.password,
         config
       })
-        console.log(response.data);
-    }
-  },
-        addrightpanel() {
+      // Ovo se vracama samo kad je uspjeh
+      this.successMessage = 'Logged in successfully';
+      // napraviti da backend vraca informacije o korisniku nekako na front end i onda ih spremit u store!
+      setTimeout(() => {
+        this.$router.push('/dashboard');
+      }, 700);
+    },
+    addrightpanel() {
           this.rightpanel = 'right-panel-active';
         },
         removerightpanel() {
@@ -455,7 +461,8 @@
           })
           console.log(response.data);
         }
-      };
+      }
+  }
 /*
         loginRequest() {
           // Reset error and success messages

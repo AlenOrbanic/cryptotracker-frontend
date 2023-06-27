@@ -53,7 +53,7 @@
             >
               <div class="info_line">
                 <h6>Change currency</h6>
-                <h6>$ - USD</h6>
+                <h6>{{ selectedCurrency }}</h6>
               </div>
             </button>
           </h2>
@@ -65,20 +65,14 @@
           >
             <div class="accordion-body">
               <div class="changeCurrency_wrap">
-                <div class="changeCurrency_box flex_align">$ - USD</div>
-                <div class="changeCurrency_box flex_align">€- EUR</div>
-                <div class="changeCurrency_box flex_align">¥- JPY</div>
-                <div class="changeCurrency_box flex_align">£- GBP</div>
-                <div class="changeCurrency_box flex_align">₹- INR</div>
-                <div class="changeCurrency_box flex_align">₽- RUB</div>
-                <div class="changeCurrency_box flex_align">₺- TRY</div>
-                <div class="changeCurrency_box flex_align">P - PLN</div>
-                <div class="changeCurrency_box flex_align">N - NOK</div>
-                <div class="changeCurrency_box flex_align">C- CAD</div>
-                <div class="changeCurrency_box flex_align">A- AUD</div>
-                <div class="changeCurrency_box flex_align">H- HUF</div>
-                <div class="changeCurrency_box flex_align">S- SEK</div>
-                <div class="changeCurrency_box flex_align">C- CZK</div>
+                <button
+                  v-for="currency in currencies"
+                  :key="currency.code"
+                  :class="['changeCurrency_button', { active: selectedCurrency === currency.code }]"
+                  @click="updateCurrency(currency.code)"
+                >
+                  {{ currency.code }} - {{ currency.name }}
+                </button>
               </div>
             </div>
           </div>
@@ -106,7 +100,7 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Cryptotracker is currently on version 2.0, for the previous versions check <a href="https://github.com/LukaBrodaric/CryptoTracker-pi">this link</a>
               </h6>
             </div>
           </div>
@@ -161,36 +155,17 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
+              <!--možda bolje formatirat-->
               <h6>
-                ok
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="Help">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseSix"
-              aria-expanded="false"
-              aria-controls="collapseSix"
-            >
-              <div class="info_line">
-                <h6>Help</h6>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="collapseSix"
-            class="accordion-collapse collapse"
-            aria-labelledby="Help"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <h6>
-                ok
+                <b>Data security&nbsp;&nbsp;&nbsp;</b><br>
+                <p>We take reasonable measures to protect the confidentiality, integrity, and security of your personal information.&nbsp;&nbsp;&nbsp;</p>
+                <p>However, please note that no method of transmission over the Internet or electronic storage is 100% secure. &nbsp;&nbsp;</p>
+                <p>We cannot guarantee the absolute security of your information.&nbsp;&nbsp;&nbsp;</p>
+                <b>Your Rights and Choices&nbsp;&nbsp;&nbsp;</b>
+                <p>You have certain rights and choices regarding the personal information we collect about you.&nbsp;&nbsp;&nbsp; </p>
+                <p>You may have the right to access, update, correct, or delete your personal information.&nbsp;&nbsp;&nbsp;</p>
+                <p>You may also have the right to object to certain processing activities or withdraw your consent.&nbsp;&nbsp; &nbsp;</p>
+                <p>To exercise your rights, please contact us using the information provided below.&nbsp;&nbsp;&nbsp;</p>
               </h6>
             </div>
           </div>
@@ -198,66 +173,85 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="ContactUS">
             <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseSeven"
-              aria-expanded="false"
-              aria-controls="collapseSeven"
-            >
-              <div class="info_line">
-                <h6>Contact us</h6>
-                <h6 class="clr_blue">info@cryptotracker.com</h6>
-              </div>
-            </button>
+  class="accordion-button collapsed"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#collapseSeven"
+  aria-expanded="false"
+  aria-controls="collapseSeven"
+  @click="sendEmail"
+>
+  <div class="info_line">
+    <h6>Contact us</h6>
+    <h6 class="clr_blue">cryptotracker@net.hr</h6>
+  </div>
+</button>
           </h2>
-          <div
-            id="collapseSeven"
-            class="accordion-collapse collapse"
-            aria-labelledby="ContactUS"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <h6>
-                ok
-              </h6>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-  import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import userinfo from '../stores/userinfo';
 
-  const notifications = ref(false); // ON OFF BUTTON SAM POKVARIO!!!
-  const collapseOne = ref(false);
-  const collapseTwo = ref(false);
-
-  // Lifecycle hooks
-  onMounted(() => {
-    // Code to run when the component is mounted
-    // ...
-  });
-
-  onBeforeUnmount(() => {
-    // Code to run before the component is unmounted
-    // ...
-  });
-
-  // Computed properties
-  const computedProperty = computed(() => {
-    // Code for computed property
-    // ...
-  });
-
-  // Export variables or functions
-  export {
-    notifications,
-    collapseOne,
-    collapseTwo,
-    computedProperty,
-    // ... other variables or functions to export
-  };
+export default {
+  data() {
+    return {
+      currencies: [
+        { code: "USD", name: "US Dollar" },
+        { code: "EUR", name: "Euro" },
+        { code: "JPY", name: "Japanese Yen" },
+        { code: "GBP", name: "British Pound" },
+        { code: "INR", name: "Indian Rupee" },
+        { code: "RUB", name: "Russian Ruble" },
+        { code: "TRY", name: "Turkish Lira" },
+        { code: "PLN", name: "Polish Zloty" },
+        { code: "NOK", name: "Norwegian Krone" },
+        { code: "CAD", name: "Canadian Dollar" },
+        { code: "AUD", name: "Australian Dollar" },
+        { code: "HUF", name: "Hungarian Forint" },
+        { code: "SEK", name: "Swedish Krona" },
+        { code: "CZK", name: "Czech Koruna" }
+      ],
+      selectedCurrency: "USD"
+    };
+  },
+  methods: {
+    updateCurrency(code) {
+      this.selectedCurrency = code;
+      userinfo.usercurrency = code;
+      console.log(userinfo.usercurrency);
+      const currency = this.currencies.find(c => c.code === code);
+      if (currency) {
+      console.log(currency.name);
+      userinfo.usercurrencyfull = currency.name;
+      }
+    },
+    sendEmail() {
+      window.location = "mailto:cryptotracker@net.hr"
+    }
+  }
+};
 </script>
+
+<style scoped>
+.changeCurrency_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.changeCurrency_button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #f2f2f2;
+  color: #333333;
+  cursor: pointer;
+}
+
+.changeCurrency_button.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+</style>
