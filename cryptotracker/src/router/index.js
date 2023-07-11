@@ -125,7 +125,7 @@ setTimeout(() => {
       " -> ",
       to.name,
       "korisnik",
-      userinfo.currentUser
+      userinfo.username
     );
     const noUser = userinfo.currentUser === null;
     if(!noUser){

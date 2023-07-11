@@ -429,38 +429,82 @@
         };
       },
       methods: {
-      async login() {
-        this.xhrRequest = true;
-        const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      const response = await AuthenticationService.login({
-        email: this.email,
-        password: this.password,
-        config
-      })
-      // Ovo se vracama samo kad je uspjeh
-      this.successMessage = 'Logged in successfully';
-      // napraviti da backend vraca informacije o korisniku nekako na front end i onda ih spremit u store!
-      setTimeout(() => {
-        this.$router.push('/dashboard');
-      }, 700);
-    },
+  async login() {
+  this.xhrRequest = true;
+  setTimeout(() => {
+    this.xhrRequest = false;
+  }, 4000);
+  axios.get('http://localhost:8000/api/users')
+  .then(response =>{
+    console.log(response.data, "gugningg")
+  })
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    
+    const response = await AuthenticationService.login({
+      email: this.email,
+      password: this.password,
+      config
+    });
+    
+const url = `http://localhost:8000/api/userss?email=${this.email}&password=${this.password}`;
+
+axios.get(url)
+  .then(response => {
+    const userData = response.data;
+    console.log(userData, " 1234"); // Handle the user data as needed
+  })
+  .catch(error => {
+    console.error('Error retrieving user data:', error);
+  });
+
+    // Ovo se vraca samo kad je uspjeh
+    this.successMessage = 'Logged in successfully';
+    // Napraviti da backend vraca informacije o korisniku nekako na frontend i onda ih spremiti u store!
+    setTimeout(() => {
+      this.$router.push('/dashboard');
+    }, 700);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error during login:', error);
+    this.errorMessage = 'THERE WAS AN ERROR DURING LOGIN';
+    // You can set an error message or perform any other necessary actions
+  }
+},
     addrightpanel() {
           this.rightpanel = 'right-panel-active';
         },
         removerightpanel() {
           this.rightpanel = '';
         },
-        async register(){
-          const response = await AuthenticationService.register({
-            email: this.email,
-            password: this.password
-          })
-          console.log(response.data);
-        }
+        async register() {
+  this.xhrRequest = true;
+  setTimeout(() => {
+    this.xhrRequest = false;
+  }, 4000);
+
+  try {
+    const response = await AuthenticationService.register({
+      email: this.email,
+      password: this.password
+    });
+    console.log(response.data);
+    this.successMessage = 'SUCCESSFULLY REGISTERED';
+    setTimeout(() => {
+      this.$router.push('/dashboard');
+    }, 700);
+  } catch (error) {
+    // Handle the error here
+    this.errorMessage = 'THERE WAS AN ERROR DURING REGISTRATION';
+    console.error('Error during registration:', error);
+    // You can set an error message or perform any other necessary actions
+  }
+}
+
       }
   }
 /*
