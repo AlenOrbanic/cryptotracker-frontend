@@ -10,7 +10,7 @@ import { useLayoutStore } from '../stores/layout';
 
 const routes = [
   //dashboard
-  { path: '/dashboard', name: 'dashboard', component: Home },
+  { path: '/dashboard', name: 'dashboard', component: Home},
 
   {
     path: '/',
@@ -22,7 +22,9 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "pages-error500" */ '../views/Login.vue'),
-    meta: { layout: 'auth' },
+    meta: { layout: 'auth',
+            needsUser: false
+   },
   },
 
   {
@@ -33,7 +35,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Portfolio.vue"),
     meta: {
-      needsUser: true,
+      needsUser: true
     },
   },
   {
@@ -44,7 +46,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/News.vue"),
     meta: {
-      needsUser: true,
+      needsUser: true
     },
   },
   {
@@ -55,7 +57,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Profile.vue"),
     meta: {
-      needsUser: true,
+      needsUser: true
     },
   },
   {
@@ -66,7 +68,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Settings.vue"),
     meta: {
-      needsUser: true,
+      needsUser: true
     },
   },
   {
@@ -77,7 +79,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Calculator.vue"),
     meta: {
-      needsUser: true,
+      needsUser: true
     },
   },
   {
@@ -88,7 +90,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/adminpanel.vue"),
     meta: {
-      needsUser: true,
+      needsUser: true
     },
   }    
 ];
@@ -109,49 +111,35 @@ router.beforeEach((to, from, next) => {
     next(true);
 });
 
-setTimeout(() => {
-  router.beforeEach((to, from, next) => {
-
-    const store = useLayoutStore();
-    if (to.meta && to.meta.layout && to.meta.layout == 'auth') {
-        store.setLayout('auth');
+router.beforeEach((to, from, next) => {
+  // Check if user information exists in userinfo object
+  if (userinfo.useremail && userinfo.userpassword) {
+    // User information exists
+    if (to.name === 'login') {
+      // User is already logged in, redirect to dashboard or appropriate page
+      next({ name: 'dashboard' });
     } else {
-      store.setLayout('app');
-    }
-
-    console.log(
-      "Stara ruta",
-      from.name,
-      " -> ",
-      to.name,
-      "korisnik",
-      userinfo.username
-    );
-    const noUser = userinfo.currentUser === null;
-    if(!noUser){
-      console.log(to.name, "aaaaa");
-    }
-    if(to.name==="adminpanel"){
-      if(userinfo.admin){
-        next();
-      }
-      else{ next(false);
-      console.log("Nemas admin perms");
-      }
-    }
-    if (noUser && to.meta.needsUser) {
-      // ako korisnik nije logiran, a stranica zahtjeva login
-      console.log("Logiraj se prvo!");
-      next("login");
-    } else {
+      // Proceed to next route
       next();
     }
-    if (!noUser && !to.meta.needsUser) {
-      // ako je korisnik logiran, a stranica ne zahtjeva login
-      console.log(userinfo.currentUser);
-      next("Home");
+  } else {
+    // User information doesn't exist, redirect to login page
+    if (to.name === 'login') {
+      // Prevent infinite loop if already on the login page
+      next();
+    } else {
+      next({ name: 'login' });
     }
-  });
-}, 2000);
+  }
+});
+
+// Add an event listener to store user information in localStorage on route navigation
+router.afterEach((to, from) => {
+  if (userinfo.useremail && userinfo.userpassword) {
+    localStorage.setItem('useremail', userinfo.useremail);
+    localStorage.setItem('userpassword', userinfo.userpassword);
+  }
+});
+
 
 export default router;

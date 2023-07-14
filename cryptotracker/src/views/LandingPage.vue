@@ -421,8 +421,5 @@
 <script>
 export default{
     name:"LandingPage",
-    created(){
-        console.log("THIS WORKS!!!!");
-    }
 }
 </script>

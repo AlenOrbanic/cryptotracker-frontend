@@ -434,10 +434,6 @@
   setTimeout(() => {
     this.xhrRequest = false;
   }, 4000);
-  axios.get('http://localhost:8000/api/users')
-  .then(response =>{
-    console.log(response.data, "gugningg")
-  })
   try {
     const config = {
       headers: {
@@ -456,10 +452,14 @@ const url = `http://localhost:8000/api/userss?email=${this.email}&password=${thi
 axios.get(url)
   .then(response => {
     const userData = response.data;
-    console.log(userData, " 1234"); // Handle the user data as needed
+    userinfo.username = userData.username;
+    userinfo.usercurrency = userData.usercurrency;
+    userinfo.usercurrencyfull = userData.usercurrencyfull;
+    userinfo.useremail = this.email;
+    userinfo.userpassword = this.password;
   })
   .catch(error => {
-    console.error('Error retrieving user data:', error);
+    console.error('Error retrieving user dwata:', error);
   });
 
     // Ovo se vraca samo kad je uspjeh
@@ -507,48 +507,4 @@ axios.get(url)
 
       }
   }
-/*
-        loginRequest() {
-          // Reset error and success messages
-          this.errorMessage = '';
-          this.successMessage = '';
-    
-          // Disable the login button while the request is being made
-          this.xhrRequest = true;
-    
-          // Make the login request to the backend
-          axios
-            .post('/api/login', {
-              email: this.email,
-              password: this.password
-            })
-            .then(response => {
-              // Reset the form fields
-              this.email = '';
-              this.password = '';
-    
-              // Store the token in localStorage or Vuex (depending on your setup)
-              const token = response.data.token;
-              // You can store the token in localStorage like this:
-              localStorage.setItem('token', token);
-    
-              // Display a success message
-              this.successMessage = 'Logged in successfully';
-    
-              // Enable the login button
-              this.xhrRequest = false;
-    
-              // Redirect to a new page or perform any other action
-              // Example:
-              // this.$router.push('/dashboard');
-            })
-            .catch(error => {
-              // Display an error message
-              this.errorMessage = 'Login failed. Please check your credentials.';
-    
-              // Enable the login button
-              this.xhrRequest = false;
-            });
-        }, 
-*/
     </script>

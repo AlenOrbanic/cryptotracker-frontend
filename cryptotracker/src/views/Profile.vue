@@ -19,7 +19,7 @@
             >
               <div class="info_line">
                 <h6>Display name</h6>
-                <h6>Luka Brodarič</h6>
+                <h6>{{userinfo.username}}</h6>
               </div>
             </button>
           </h2>
@@ -47,7 +47,7 @@
             >
               <div class="info_line">
                 <h6>Email adress</h6>
-                <h6>lbrodaric@unipu.hr</h6>
+                <h6>{{ userinfo.useremail }}</h6>
               </div>
             </button>
           </h2>
@@ -127,12 +127,13 @@
 </template>
 
 <script lang="ts">
+import userinfo from '../stores/userinfo';
 export default{
+data(){
+  return {
+    userinfo
+  }
+},
 name: "portfolio",
-created() {
-    setTimeout(() => {
-      console.log("JA RADIM!!!!!!");
-    }, 2000);
-  },
 }
 </script>

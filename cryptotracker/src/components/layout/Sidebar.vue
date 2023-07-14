@@ -161,7 +161,7 @@ const routeName = computed(() => {
         <RouterLink
           class="clr_red"
           to="/"
-          @click="layout.deactive_mobile_menu()"
+          @click="logout(); layout.deactive_mobile_menu()"
           ><svg
             width="18"
             height="16"
@@ -181,3 +181,24 @@ const routeName = computed(() => {
     <!-- left bar end -->
   </div>
 </template>
+
+<script>
+import userinfo from '../../stores/userinfo';
+
+export default {
+  name: 'Sidebar',
+  methods: {
+    logout() {
+  userinfo.username = null;
+  userinfo.useremail = '';
+  userinfo.userpassword = '';
+  userinfo.usercurrency = 'USD';
+  userinfo.usercurrencyfull = 'US Dollar';
+  userinfo.admin = false;
+
+  localStorage.removeItem('useremail');
+  localStorage.removeItem('userpassword');
+}
+  }
+}
+</script>
