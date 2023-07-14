@@ -20,8 +20,7 @@ const layout = useLayoutStore();
           <div class="d-flex align-items-center">
             <img src="@/assets/img/nav_dp.png" alt="" class="nav_pic" />
             <div class="flex_align flex-column">
-              <h6 class="fw_700">Luka Brodarič</h6>
-              <span>lbrodaric@unipu.hr</span>
+              <h6 class="fw_700">{{ userinfo.username }}</h6>
             </div>
           </div>
           <img
@@ -34,3 +33,15 @@ const layout = useLayoutStore();
     </div>
   </header>
 </template>
+<script>
+import userinfo from '../../stores/userinfo';
+
+export default {
+  name: "YourComponentName",
+  data() {
+    return {
+      userinfo
+    };
+  }
+}
+</script>

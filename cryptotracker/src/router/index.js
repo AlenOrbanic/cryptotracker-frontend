@@ -124,8 +124,8 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     // User information doesn't exist, redirect to login page
-    if (to.name === 'login') {
-      // Prevent infinite loop if already on the login page
+    if (to.name === 'login' || to.path === '/') {
+      // Prevent redirection if already on the login page or home page
       next();
     } else {
       next({ name: 'login' });

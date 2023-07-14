@@ -21,7 +21,7 @@
             <a href="#review">Review</a>
             <a href="#contact">Contact</a>
             <a></a>
-            <a href="/login" class="log-btn">Login</a>
+            <a href="/login" class="log-btn">{{ buttonText }}</a>
         </nav>
     
     </header>
@@ -415,11 +415,20 @@
     @import '../assets/css/landingPage.css';
   
     </style>
-  
-  
-  
 <script>
-export default{
-    name:"LandingPage",
+import userinfo from '../stores/userinfo';
+
+export default {
+  name: "LandingPage",
+  data() {
+    return {
+      userinfo,
+    };
+  },
+  computed: {
+    buttonText() {
+      return this.userinfo.useremail && this.userinfo.userpassword ? 'Dashboard' : 'Login';
+    }
+  }
 }
 </script>

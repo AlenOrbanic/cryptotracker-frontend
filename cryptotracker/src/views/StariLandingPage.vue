@@ -21,7 +21,7 @@
             <a href="#review">Review</a>
             <a href="#contact">Contact</a>
             <a></a>
-            <a href="/login" class="log-btn">Login</a> <!-- V-if: userlogged in (funckija) -->
+            <a href="/login" class="log-btn">Login</a>
         </nav>
     
     </header>

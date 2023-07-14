@@ -459,7 +459,7 @@ axios.get(url)
     userinfo.userpassword = this.password;
   })
   .catch(error => {
-    console.error('Error retrieving user dwata:', error);
+    console.error('Error retrieving user data:', error);
   });
 
     // Ovo se vraca samo kad je uspjeh

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="hey_section">
       <img src="../assets/img/Waving_Hand.png" alt="" />
-      <h5>Hey, Luka!</h5>
+      <h5>Hey, {{userinfo.username}}!</h5>
     </div>
     <div class="profile_info">
       <h5>Profile information</h5>

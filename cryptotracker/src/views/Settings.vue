@@ -128,7 +128,50 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                <div class="term-row">
+  <p>Welcome to <em>Cryptotracker 2.0</em>! These terms of service ("<strong>Terms</strong>") govern your use of our crypto application and related services ("<strong>Services</strong>"). By accessing or using our Services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please refrain from using our Services.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>1. Eligibility:</strong> You must be at least 18 years old and capable of forming a binding contract to use our Services. By using our Services, you represent and warrant that you meet these eligibility requirements.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>2. User Responsibilities:</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree not to use our Services for any illegal, unauthorized, or malicious purposes.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>3. Risks:</strong> Cryptocurrencies involve inherent risks, including but not limited to market volatility, technological vulnerabilities, and regulatory changes. You acknowledge and accept these risks and agree that we are not liable for any losses or damages incurred while using our Services.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>4. Intellectual Property:</strong> Our Services and all related intellectual property rights are owned or licensed by us. You are granted a limited, non-transferable, and non-exclusive license to use our Services for personal and non-commercial purposes. You agree not to modify, distribute, or reproduce any part of our Services without our prior written consent.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>5. Privacy:</strong> Our Privacy Policy governs the collection, use, and disclosure of your personal information. By using our Services, you consent to the collection and processing of your personal data as described in our Privacy Policy.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>6. Limitation of Liability:</strong> To the extent permitted by applicable law, we shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of or related to the use of our Services.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>7. Termination:</strong> We reserve the right to suspend or terminate your access to our Services at any time, without prior notice or liability, for any reason whatsoever. Upon termination, the provisions of these Terms that by their nature should survive termination shall continue to apply.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>8. Modifications:</strong> We may update or modify these Terms from time to time. Any changes will be effective upon posting the revised Terms on our website. Your continued use of our Services after any such changes constitutes your acceptance of the modified Terms.</p>
+</div>
+
+<div class="term-row">
+  <p><strong>9. Governing Law:</strong> These Terms shall be governed by and construed in accordance with the laws of <em>[Jurisdiction]</em>. Any disputes arising out of or in connection with these Terms shall be submitted to the exclusive jurisdiction of the courts of <em>[Jurisdiction]</em>.</p>
+</div>
+
+<div class="term-row">
+  <p>If you have any questions or concerns regarding these Terms, please contact us at <a href="mailto:cryptotracker@net.hr">cryptotracker@net.hr</a>.</p>
+</div>
+
               </h6>
             </div>
           </div>
@@ -194,7 +237,8 @@
 </template>
 <script>
 import userinfo from '../stores/userinfo';
-
+import axios from 'axios';
+import AuthenticationService from '../services/AuthenticationService';
 export default {
   data() {
     return {
@@ -218,7 +262,7 @@ export default {
     };
   },
   methods: {
-    updateCurrency(code) {
+    async updateCurrency(code) {
       this.selectedCurrency = code;
       userinfo.usercurrency = code;
       console.log(userinfo.usercurrency);
@@ -226,6 +270,17 @@ export default {
       if (currency) {
       console.log(currency.name);
       userinfo.usercurrencyfull = currency.name;
+      try {
+    const response = await AuthenticationService.updateUserCurrency({
+      email: this.email,
+      usercurrency: currency.code,
+      usercurrencyfull: currency.name
+    });
+  } catch (error) {
+    // Handle the error here
+    console.error('Error while chaning currency:', error);
+    // You can set an error message or perform any other necessary actions
+  }      
       }
     },
     sendEmail() {
@@ -236,6 +291,9 @@ export default {
 </script>
 
 <style scoped>
+.term-row {
+    padding-bottom: 20px;
+  }
 .changeCurrency_wrap {
   display: flex;
   flex-wrap: wrap;
