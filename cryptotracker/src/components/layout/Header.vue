@@ -1,7 +1,3 @@
-<script setup>
-import { useLayoutStore } from "@/stores/layout";
-const layout = useLayoutStore();
-</script>
 <template>
   <header class="nav_wrap">
     <div class="container">
@@ -23,25 +19,30 @@ const layout = useLayoutStore();
               <h6 class="fw_700">{{ userinfo.username }}</h6>
             </div>
           </div>
-          <img
-            src="@/assets/img/vertical_dots.svg"
-            alt=""
-            class="vertical_dots"
-          />
+          <img src="@/assets/img/vertical_dots.svg" alt="" class="vertical_dots" />
         </div>
       </div>
     </div>
   </header>
 </template>
+
 <script>
+import { useLayoutStore } from "@/stores/layout";
 import userinfo from '../../stores/userinfo';
 
 export default {
-  name: "YourComponentName",
+  name: "Header",
   data() {
     return {
-      userinfo
+      userinfo,
     };
-  }
-}
+  },
+  setup() {
+    const layout = useLayoutStore();
+
+    return {
+      layout,
+    };
+  },
+};
 </script>

@@ -450,7 +450,7 @@
 const url = `http://localhost:8000/api/userss?email=${this.email}&password=${this.password}`;
 
 axios.get(url)
-  .then(response => {
+  .then(response => { 
     const userData = response.data;
     userinfo.username = userData.username;
     userinfo.usercurrency = userData.usercurrency;
@@ -490,8 +490,12 @@ axios.get(url)
   try {
     const response = await AuthenticationService.register({
       email: this.email,
-      password: this.password
+      password: this.password,
+      username: this.username
     });
+    userinfo.useremail = this.email;
+    userinfo.userpassword = this.password;
+    userinfo.username = this.username;
     console.log(response.data);
     this.successMessage = 'SUCCESSFULLY REGISTERED';
     setTimeout(() => {
