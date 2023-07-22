@@ -92,18 +92,28 @@
           </div>
         </div>
         <div class="accordion-item">
-          <h2 class="accordion-header" id="ProfilePic">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFour"
-              aria-expanded="false"
-              aria-controls="collapseFour"
-            >
-              <div class="info_line">
-                <h6>Edit profile picture</h6>
-                <h6><img src="../assets/img/nav_dp.png" alt="" /></h6>
+        <h2 class="accordion-header" id="ProfilePic">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFour"
+            aria-expanded="false"
+            aria-controls="collapseFour"
+          >
+            <div class="info_line">
+              <h6>Edit profile picture</h6>
+                <h6>
+                  <div class="profile-picture-container">
+      <img
+        v-if="profilePictureUrl"
+        :src="profilePictureUrl"
+        alt="Profile Picture"
+        class="profile-picture"
+      />
+      <img v-else src="../assets/img/nav_dp.png" alt="User Icon" class="profile-picture" />
+    </div>
+                </h6>
               </div>
             </button>
           </h2>
@@ -114,10 +124,11 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <div class="change_input change__input flex_align">
-                Change profile picture
-              </div>
-              <a href="" class="flex_align main_btn">SAVE</a>
+              <div class="change_input change__input flex_align">Change profile picture</div>
+              <!-- Add the input element to select a new profile picture -->
+              <input type="file" @change="handleImageUpload" />
+              <!-- Add the @click event and prevent default behavior -->
+              <a href="" class="flex_align main_btn" @click.prevent="saveProfilePicture">SAVE</a>
             </div>
           </div>
         </div>
@@ -128,12 +139,95 @@
 
 <script lang="ts">
 import userinfo from '../stores/userinfo';
-export default{
-data(){
-  return {
-    userinfo
-  }
-},
-name: "portfolio",
-}
+import AuthenticationService from '../services/AuthenticationService';
+
+export default {
+  data() {
+    return {
+      userinfo,
+      selectedImage: null,
+      profilePictureUrl: null
+    };
+  },
+  methods: {
+    handleImageUpload(event) {
+      this.selectedImage = event.target.files[0];
+    },
+    saveProfilePicture() {
+      console.log('User email:', this.userinfo.useremail);
+      if (this.selectedImage) {
+        const formData = new FormData();
+        formData.append('image', this.selectedImage, `${this.userinfo.useremail}.jpg`);
+        formData.append('useremail', this.userinfo.useremail);
+
+        AuthenticationService.uploadProfilePicture(formData)
+          .then(() => {
+            console.log('Profile picture uploaded successfully!');
+            // Wait for 500ms to allow the server to process the image
+            setTimeout(() => {
+              this.fetchProfilePicture();
+            }, 200);
+          })
+          .catch((error) => {
+            console.error('Error uploading profile picture:', error);
+          });
+      } else {
+        console.log('No image selected for upload.');
+      }
+    },
+    fetchProfilePicture() {
+      AuthenticationService.getProfilePicture(this.userinfo.useremail)
+        .then((response) => {
+          // Create a URL for the blob data and set it as the profilePictureUrl
+          const url = URL.createObjectURL(new Blob([response.data]));
+          this.profilePictureUrl = url;
+        })
+        .catch((error) => {
+          console.error('Error fetching profile picture:', error);
+        });
+    }
+  },
+  name: "portfolio",
+  mounted() {
+    // Fetch the profile picture when the component is mounted
+    this.fetchProfilePicture();
+  },
+};
 </script>
+
+<style scoped>
+/* Add styles to make the image circular */
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensure the image fills the circle without stretching */
+  border: 2px solid #fff; /* Add a white border to give a circle effect */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for aesthetics */
+}
+
+/* Add styles to center the image and adjust its size on smaller screens */
+.profile-picture-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the image */
+  align-items: center; /* Vertically center the image */
+  width: 100px; /* Set the width to the desired circle size */
+  height: 100px; /* Set the height to the desired circle size */
+  border-radius: 50%; /* Create a circular container */
+  border: 2px solid #fff; /* Add a white border to give a circle effect */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for aesthetics */
+  margin: auto; /* Center the container horizontally (optional) */
+}
+
+/* Add styles to adjust the image size on smaller screens */
+@media (max-width: 768px) {
+  .profile-picture {
+    width: 60px;
+    height: 60px;
+  }
+  .profile-picture-container {
+    width: 60px;
+    height: 60px;
+  }
+}
+</style>

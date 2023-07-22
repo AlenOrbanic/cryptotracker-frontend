@@ -258,7 +258,7 @@ export default {
         { code: "SEK", name: "Swedish Krona" },
         { code: "CZK", name: "Czech Koruna" }
       ],
-      selectedCurrency: "USD"
+      selectedCurrency: userinfo.usercurrency
     };
   },
   methods: {
