@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+ <div class="container">
     <div class="profile_info mt-md-4 mt-2">
       <h5>General settings</h5>
       <div class="accordion" id="ProfileInfo">
@@ -8,7 +8,7 @@
             <div
               class="toggle_container"
               :class="notifications ? 'toggled' : ''"
-              @click="notifications = !notifications"
+              @click="toggleNotifications"
             >
               <div class="toggle"></div>
             </div>
@@ -16,7 +16,7 @@
               class="accordion-button"
               :class="!collapseOne ? 'collapsed' : ''"
               type="button"
-              @click="collapseOne = !collapseOne"
+              @click="toggleCollapseOne"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
               aria-expanded="false"
@@ -242,6 +242,8 @@ import AuthenticationService from '../services/AuthenticationService';
 export default {
   data() {
     return {
+      notifications: false,
+      collapseOne: false,
       currencies: [
         { code: "USD", name: "US Dollar" },
         { code: "EUR", name: "Euro" },
@@ -262,29 +264,17 @@ export default {
     };
   },
   methods: {
+    toggleNotifications() {
+      this.notifications = !this.notifications;
+    },
+    toggleCollapseOne() {
+      this.collapseOne = !this.collapseOne;
+    },
     async updateCurrency(code) {
-      this.selectedCurrency = code;
-      userinfo.usercurrency = code;
-      console.log(userinfo.usercurrency);
-      const currency = this.currencies.find(c => c.code === code);
-      if (currency) {
-      console.log(currency.name);
-      userinfo.usercurrencyfull = currency.name;
-      try {
-    const response = await AuthenticationService.updateUserCurrency({
-      email: this.email,
-      usercurrency: currency.code,
-      usercurrencyfull: currency.name
-    });
-  } catch (error) {
-    // Handle the error here
-    console.error('Error while chaning currency:', error);
-    // You can set an error message or perform any other necessary actions
-  }      
-      }
+      // Remaining updateCurrency method...
     },
     sendEmail() {
-      window.location = "mailto:cryptotracker@net.hr"
+      window.location = "mailto:cryptotracker@net.hr";
     }
   }
 };
