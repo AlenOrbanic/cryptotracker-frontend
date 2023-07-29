@@ -9,8 +9,7 @@
         </div>
 
         <div class="form_group">
-          <input type="text" class="form-control" placeholder="Search@." />
-          <img src="@/assets/img/search_icon.svg" alt="" />
+          
         </div>
         <div class="nav_profile" @click="goToProfile">
       <div class="d-flex align-items-center">
