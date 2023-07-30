@@ -72,22 +72,7 @@
           </section>
           <!-- coins balance end -->
         </div>
-        <div class="col-lg-4">
-          <div class="update_portfolio">
-            <h5>Update your portfolio</h5>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Choose a cryptocurrency"
-            />
-            <input type="text" class="form-control" placeholder="Amount" />
-            <a href="" class="main_btn flex_align">Update</a>
-            <p>
-              The final price of each coin added to portfolio will be updated
-              within few seconds
-            </p>
-          </div>
-        </div>
+    <UpdatePortfolio />
       </div>
     </div>
   </div>
@@ -95,11 +80,14 @@
 
 <script>
 import PortfolioCoin from "../components/PortfolioCoin.vue";
+import UpdatePortfolio from '../components/UpdatePortfolio.vue';
 
 export default {
   components: {
-    PortfolioCoin
+    PortfolioCoin,
+    UpdatePortfolio
   },
-  // Your component's options here...
+  
 }
 </script>
+

@@ -82,22 +82,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4">
-        <div class="update_portfolio">
-          <h5>Update your portfolio</h5>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Choose a cryptocurrency"
-          />
-          <input type="text" class="form-control" placeholder="Amount" />
-          <a href="" class="main_btn flex_align">Update</a>
-          <p>
-            The final price of each coin added to portfolio will be updated
-            within few seconds
-          </p>
-        </div>
-      </div>
+      <UpdatePortfolio />
     </div>
   </div>
   <!-- char portfolio section end -->
@@ -145,10 +130,12 @@
 
 <script>
 import DashboardCoin from "../components/DashboardCoin.vue";
+import UpdatePortfolio from '../components/UpdatePortfolio.vue';
 
 export default {
   components: {
-    DashboardCoin
+    DashboardCoin,
+    UpdatePortfolio
   }
 }
 </script>
