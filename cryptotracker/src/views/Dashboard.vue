@@ -14,22 +14,24 @@
           <h1>$123,987</h1>
         </div>
         <DashboardCoin
+          :price="BTC_Price"
           pair="BTC/USDT"
           coin="bitcoin"
           icon="src/assets/img/coin1.svg"
-          graph="src/assets/img/coin_graph1.svg"
+          graph="https://www.coingecko.com/coins/1/sparkline.svg"
         />
         <DashboardCoin
+          :price="ETH_Price"
           pair="ETHUSDT"
           coin="Ethereum"
           icon="src/assets/img/eth_coin.svg"
-          graph="src/assets/img/coin_graph2.svg"
+          graph="https://www.coingecko.com/coins/279/sparkline.svg"
         />
         <DashboardCoin
-          pair="SOLUSDT"
+          :price="SOL_Price"
           coin="Solana"
           icon="src/assets/img/col_coin.svg"
-          graph="src/assets/img/coin_graph3.svg"
+          graph="https://www.coingecko.com/coins/4128/sparkline.svg"
         />
       </div>
     </div>
@@ -130,13 +132,49 @@
 
 <script>
 import DashboardCoin from "../components/DashboardCoin.vue";
-import UpdatePortfolio from '../components/UpdatePortfolio.vue';
+import UpdatePortfolio from "../components/UpdatePortfolio.vue";
+import CoinDataService from "../services/CoinDataService";
 
 export default {
+  data() {
+    return {
+      BTC_Price: 0,
+      ETH_Price: 0,
+      SOL_Price: 0,
+    };
+  },
   components: {
     DashboardCoin,
-    UpdatePortfolio
-  }
-}
+    UpdatePortfolio,
+  },
+  methods: {
+    fetchCoinData() {
+      CoinDataService.getCoinData("bitcoin").then((res) => {
+        let price = res.data.bitcoin.usd;
+        if (typeof price == "number") {
+          this.BTC_Price = price;
+        }
+      });
+      CoinDataService.getCoinData("ethereum").then((res) => {
+        let price = res.data.ethereum.usd;
+        if (typeof price == "number") {
+          this.ETH_Price = price;
+        }
+      });
+      CoinDataService.getCoinData("solana").then((res) => {
+        let price = res.data.solana.usd;
+        if (typeof price == "number") {
+          this.SOL_Price = price;
+        }
+      });
+    },
+  },
+  async beforeMount() {
+    this.fetchCoinData();
+    setInterval(() => {
+      this.fetchCoinData();
+    }, 30000);
+  },
+};
 </script>
 
