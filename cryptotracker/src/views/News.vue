@@ -5,7 +5,6 @@
         <div class="col-lg-10 mx-auto">
           <div class="lastest_news">
             <h5>Latest news</h5>
-            <!-- Your existing content goes here -->
             <div class="cryptohopper-web-widget" data-id="5"></div>
           </div>
         </div>
@@ -20,7 +19,7 @@ export default {
   created() {
     // Your created hook code goes here
   },
-  mounted() {
+  async beforeMount()  {
     // Create a script element
     const script = document.createElement("script");
     
