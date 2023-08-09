@@ -1,5 +1,9 @@
 <script setup>
 defineProps({
+  price: {
+    type: Number,
+    required: true,
+  },
   pair: {
     type: String,
     required: true,
@@ -29,9 +33,13 @@ defineProps({
         </div>
       </div>
     </div>
-    <h1>$23,738</h1>
+    <h1>
+      {{
+        "$" + price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") || "--"
+      }}
+    </h1>
     <div class="graph_img">
-      <img :src="graph" alt="" />
+      <img :src="graph" alt="" v-bind:style="{'width': '300px', 'height': '75px'}"/>
     </div>
   </div>
 </template>
