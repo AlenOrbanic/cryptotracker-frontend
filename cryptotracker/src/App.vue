@@ -48,6 +48,7 @@ methods: {
           this.userinfo.username = userData.username; // Update the value of userinfo.username
           this.userinfo.usercurrency = userData.usercurrency;
           this.userinfo.usercurrencyfull = userData.usercurrencyfull;
+          this.userinfo.notifications = userData.notifications;
           setTimeout(() => {
             console.log(this.userinfo.username); // Use "this.userinfo" to access the updated value
           }, 200);

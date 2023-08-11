@@ -43,44 +43,8 @@
     <div class="row">
       <div class="col-xl-8">
         <div class="chart_wrap">
-          <div class="chart_inner">
-            <div class="dropdown">
-              <a
-                class="btn dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <div class="dropdown_content">
-                  <div>
-                    <h5>BTCUSDT</h5>
-                    <h6>Bitcoin</h6>
-                  </div>
-                  <p>$23,738</p>
-                </div>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Another action</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </div>
-            <ul class="chart_time">
-              <li class="active">1H</li>
-              <li>3H</li>
-              <li>5H</li>
-              <li>1D</li>
-              <li>1W</li>
-              <li>1M</li>
-            </ul>
-          </div>
-          <div class="chart_img">
-            <img src="../assets/img/Chart.png" alt="" />
+          <div class="tradingview-widget-container">
+            <div id="tradingview_0de26" v-bind:style="{ 'height': '400px' }"></div>
           </div>
         </div>
       </div>
@@ -94,37 +58,10 @@
       <div class="col-xl-8">
         <div class="lastest_news">
           <h5>Latest news</h5>
-          <h6>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </h6>
-          <h6>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </h6>
-          <h6>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </h6>
+          <div class="cryptohopper-web-widget" data-id="5" data-news_count="3"></div>
         </div>
       </div>
-      <div class="col-xl-4">
-        <div class="update_portfolio assets_wrap">
-          <div class="assets_head">
-            <h5>Assets</h5>
-            <img src="../assets/img/horizontal_dots.svg" alt="" />
-          </div>
-          <div class="assets_graph text-center">
-            <img src="../assets/img/assets_chart.svg" alt="" />
-          </div>
-          <ul class="assets_btnz">
-            <li><span class="btc"></span>BTC</li>
-            <li><span class="eth"></span>ETH</li>
-            <li><span class="ada"></span>ADA</li>
-            <li><span class="oth"></span>Others</li>
-          </ul>
-        </div>
-      </div>
+      
     </div>
   </div>
   <!-- Assets news section end -->
@@ -170,11 +107,22 @@ export default {
     },
   },
   async beforeMount() {
+    const script3 = document.createElement("script");
+    script3.src = "https://www.cryptohopper.com/widgets/js/script";
+    document.head.appendChild(script3);
     this.fetchCoinData();
     setInterval(() => {
       this.fetchCoinData();
     }, 30000);
   },
+
+  mounted() {
+    const script1 = document.createElement("script");
+    script1.src = "http://localhost:5173/tradingview.js";
+    document.head.appendChild(script1);
+    const script3 = document.createElement("script");
+    script3.src = "https://www.cryptohopper.com/widgets/js/script";
+    document.head.appendChild(script3);
+  }
 };
 </script>
-

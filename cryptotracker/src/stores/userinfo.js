@@ -9,6 +9,7 @@ const userinfo = {
   userpassword,
   usercurrency: 'USD',
   usercurrencyfull: 'US Dollar',
+  notifications: false,
   admin: false
 };
 
