@@ -237,7 +237,6 @@
 </template>
 <script>
 import userinfo from '../stores/userinfo';
-import axios from 'axios';
 import AuthenticationService from '../services/authenticationService';
 export default {
   data() {
@@ -280,10 +279,12 @@ export default {
       userinfo.usercurrencyfull = currency.name;
       try {
     const response = await AuthenticationService.updateUserCurrency({
-      email: this.email,
+      email: userinfo.useremail,
       usercurrency: currency.code,
       usercurrencyfull: currency.name
     });
+console.log(userinfo.useremail);
+console.log(response);
   } catch (error) {
     // Handle the error here
     console.error('Error while chaning currency:', error);

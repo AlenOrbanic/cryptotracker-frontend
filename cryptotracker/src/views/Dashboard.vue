@@ -71,6 +71,8 @@
 import DashboardCoin from "../components/DashboardCoin.vue";
 import UpdatePortfolio from "../components/UpdatePortfolio.vue";
 import CoinDataService from "../services/CoinDataService";
+import AuthenticationService from "../services/authenticationService";
+
 
 export default {
   data() {
@@ -85,6 +87,26 @@ export default {
     UpdatePortfolio,
   },
   methods: {
+    updatePortfolio(selectedCrypto, amount) {
+    const useremail = AuthenticationService.getCurrentUserEmail();
+
+    const userCurrencyData = {
+      useremail,
+      [selectedCrypto]: amount,
+    };
+
+    console.log('Request Body:', userCurrencyData); // Log the data you're sending
+
+    PortfolioService.updatePortfolio(userCurrencyData)
+      .then(response => {
+        console.log('Portfolio updated successfully:', response.data);
+        this.fetchCoinData(); // Refresh the coin data after updating
+      })
+      .catch(error => {
+        console.error('Error updating portfolio:', error);
+        // Handle the error as needed
+      });
+  },
     fetchCoinData() {
       CoinDataService.getCoinData("bitcoin").then((res) => {
         let price = res.data.bitcoin.usd;

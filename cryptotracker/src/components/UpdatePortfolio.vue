@@ -22,6 +22,7 @@
   </template>
   
   <script>
+import AuthenticationService from '@/services/AuthenticationService';
   export default {
     data() {
       return {
@@ -38,15 +39,17 @@
       };
     },
     methods: {
-      updatePortfolio() {
-        // Add your logic here for updating the portfolio
-        // You can use the selectedCrypto and amount values
-        // to perform the necessary actions
-        console.log("Updating portfolio...");
-        console.log("Selected Cryptocurrency:", this.selectedCrypto);
-        console.log("Amount:", this.amount);
-        // Add your logic for updating the portfolio based on the selected cryptocurrency and amount
-      }
+      updatePortfolio(selectedCrypto, amount) {
+    const useremail = AuthenticationService.getCurrentUserEmail();
+
+    const userCurrencyData = {
+      useremail,
+      // Add the selected cryptocurrency and amount to the request body
+      [selectedCrypto]: amount,
+    };
+
+    return Api().post('updateCryptoValues', userCurrencyData);
+  },
     }
   };
   </script>
