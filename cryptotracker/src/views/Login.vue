@@ -414,7 +414,7 @@
     
     <script>
     import axios from 'axios';
-    import AuthenticationService from '../services/AuthenticationService';
+    import AuthenticationService from '../services/authenticationService';
     import userinfo from '../stores/userinfo';
     export default {
       name: 'Login',

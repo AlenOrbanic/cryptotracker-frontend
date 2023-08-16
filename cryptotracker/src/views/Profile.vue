@@ -31,7 +31,7 @@
           >
             <div class="accordion-body">
               <div class="change_input flex_align">Change display name</div>
-              <a href="" class="flex_align main_btn">SAVE</a>
+              <a href="" class="flex_align main_btn" @click.prevent="saveProfilePicture">SAVE</a>
             </div>
           </div>
         </div>
@@ -139,7 +139,7 @@
 
 <script lang="ts">
 import userinfo from '../stores/userinfo';
-import AuthenticationService from '../services/AuthenticationService';
+import AuthenticationService from '../services/authenticationService';
 
 export default {
   data() {
@@ -166,7 +166,9 @@ export default {
             // Wait for 500ms to allow the server to process the image
             setTimeout(() => {
               this.fetchProfilePicture();
-            }, 200);
+              // Reload the whole website after the profile picture is saved
+              window.location.reload();
+            }, 500);
           })
           .catch((error) => {
             console.error('Error uploading profile picture:', error);
@@ -178,7 +180,6 @@ export default {
     fetchProfilePicture() {
       AuthenticationService.getProfilePicture(this.userinfo.useremail)
         .then((response) => {
-          // Create a URL for the blob data and set it as the profilePictureUrl
           const url = URL.createObjectURL(new Blob([response.data]));
           this.profilePictureUrl = url;
         })
@@ -187,9 +188,8 @@ export default {
         });
     }
   },
-  name: "portfolio",
+  name: "profile",
   mounted() {
-    // Fetch the profile picture when the component is mounted
     this.fetchProfilePicture();
   },
 };

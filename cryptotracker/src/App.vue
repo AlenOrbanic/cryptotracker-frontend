@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useLayoutStore } from './stores/layout';
 import AppLayout from './layout/app-layout.vue';
 import LandingPage from './layout/landing_page.vue';
@@ -18,9 +18,10 @@ export default {
     AppLayout,
     LandingPage
   },
-  data(){
-    return{
-      userinfo
+  data() {
+    return {
+      userinfo,
+      cryptoPrices: {} // Store cryptocurrency prices here
     }
   },
   setup() {
@@ -32,34 +33,51 @@ export default {
     };
   },
   created() {
-  this.userlog();
-  console.log(userinfo);
-},
-methods: {
-  userlog() {
-    if (this.userinfo.useremail) {
-      let email = this.userinfo.useremail;
-      let password = this.userinfo.userpassword;
-      const url = `http://localhost:8000/api/userss?email=${email}&password=${password}`;
+    this.userlog();
+    console.log(userinfo);
+    this.fetchCryptoPrices(); // Fetch cryptocurrency prices when component is created
+  },
+  methods: {
+    userlog() {
+      if (this.userinfo.useremail) {
+        let email = this.userinfo.useremail;
+        let password = this.userinfo.userpassword;
+        const url = `http://localhost:8000/api/userss?email=${email}&password=${password}`;
+        axios
+          .get(url)
+          .then((response) => {
+            const userData = response.data;
+            this.userinfo.username = userData.username;
+            this.userinfo.usercurrency = userData.usercurrency;
+            this.userinfo.usercurrencyfull = userData.usercurrencyfull;
+            this.userinfo.notifications = userData.notifications;
+            console.log("User data fetched:", this.userinfo);
+          })
+          .catch((error) => {
+            console.error("Error retrieving user data:", error);
+          });
+      }
+    },
+    fetchCryptoPrices() {
+      const cryptoSymbols = ['bitcoin', 'ethereum', 'ripple', 'litecoin', 'bitcoin-cash'];
+      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoSymbols.join(',')}&vs_currencies=usd`;
+
       axios
         .get(url)
         .then((response) => {
-          const userData = response.data;
-          this.userinfo.username = userData.username; // Update the value of userinfo.username
-          this.userinfo.usercurrency = userData.usercurrency;
-          this.userinfo.usercurrencyfull = userData.usercurrencyfull;
-          this.userinfo.notifications = userData.notifications;
-          setTimeout(() => {
-            console.log(this.userinfo.username); // Use "this.userinfo" to access the updated value
-          }, 200);
+          this.cryptoPrices = response.data;
+          console.log("Cryptocurrency prices fetched:", this.cryptoPrices);
         })
         .catch((error) => {
-          console.error("Error retrieving user data:", error);
+          console.error("Error fetching cryptocurrency prices:", error);
         });
     }
+  },
+  onMounted() {
+    // Call the fetchCryptoPrices method again at a regular interval
+    setInterval(() => {
+      this.fetchCryptoPrices();
+    }, 30000); // Update every minute (adjust the interval as needed)
   }
 }
-
-}
 </script>
-

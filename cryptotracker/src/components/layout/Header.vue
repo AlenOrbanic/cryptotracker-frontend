@@ -57,8 +57,7 @@ export default {
         // Convert the blob response to a URL for displaying the image
         this.profilePictureUrl = URL.createObjectURL(response.data);
       } catch (error) {
-        // Handle the error if the profile picture cannot be fetched
-        console.error('Error fetching profile picture:', error);
+        // Image is being replaced with the front end default one if missing
       }
     },
   },
@@ -68,10 +67,6 @@ export default {
   },
 };
 </script>
-
-<style>
-/* Your existing styles for the Header component */
-</style>
 
 <style>
 /* Your existing styles for the Header component */
