@@ -22,6 +22,7 @@
   </template>
   
   <script>
+import userinfo from '../stores/userinfo';
 import AuthenticationService from '@/services/AuthenticationService';
   export default {
     data() {
@@ -39,17 +40,19 @@ import AuthenticationService from '@/services/AuthenticationService';
       };
     },
     methods: {
-      updatePortfolio(selectedCrypto, amount) {
-    const useremail = AuthenticationService.getCurrentUserEmail();
-
-    const userCurrencyData = {
-      useremail,
-      // Add the selected cryptocurrency and amount to the request body
+      async updatePortfolio(selectedCrypto, amount) {
+  try {
+    const response = await AuthenticationService.updateUserCurrency({
+      useremail: userinfo.email,
       [selectedCrypto]: amount,
-    };
-
-    return Api().post('updateCryptoValues', userCurrencyData);
-  },
+    });
+    console.log('API response:', response.data);
+    return response; // Return the response object
+  } catch (error) {
+    console.error('API error:', error);
+    throw error; // Rethrow the error to be handled by the caller
+  }
+},
     }
   };
   </script>

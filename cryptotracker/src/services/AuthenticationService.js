@@ -10,11 +10,16 @@ export default {
   updateUserCurrency(userCurrencyData) {
     return Api().post('updateUserCurrency', userCurrencyData);
   },
-  // Add the uploadProfilePicture method
   uploadProfilePicture(formData) {
     return Api().post('uploadProfilePicture', formData);
   },
   getProfilePicture(useremail) {
     return Api().get(`profilePictures/${useremail}.jpg`, { responseType: 'blob' });
+  },
+  updateUserNotification(notificationData) {
+    return Api().put('updateUserNotification', notificationData);
+  },
+  getCryptoData(useremail) {
+    return Api().get(`getCryptoData?useremail=${useremail}`);
   }
 };

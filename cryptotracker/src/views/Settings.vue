@@ -7,7 +7,7 @@
           <h2 class="accordion-header position-relative" id="notify">
             <div
               class="toggle_container"
-              :class="notifications ? 'toggled' : ''"
+              :class="notifications ? '' : 'toggled'"
               @click="toggleNotifications"
             >
               <div class="toggle"></div>
@@ -241,7 +241,7 @@ import AuthenticationService from '../services/authenticationService';
 export default {
   data() {
     return {
-      notifications: false,
+      notifications: userinfo.notifications,
       collapseOne: false,
       currencies: [
         { code: "USD", name: "US Dollar" },
@@ -262,10 +262,34 @@ export default {
       selectedCurrency: userinfo.usercurrency
     };
   },
+  mounted() {
+    setTimeout(() => {
+      if(userinfo.notifications === true){
+        this.notifications = !this.notifications;
+      }
+    }, 1000);
+  },
   methods: {
-    toggleNotifications() {
-      this.notifications = !this.notifications;
-    },
+    async toggleNotifications() {
+  this.notifications = !this.notifications;
+  console.log(
+    "Before API call: userinfo.notifications ->",
+    userinfo.notifications,
+    "current notifications ->",
+    this.notifications
+  );
+
+  try {
+    const response = await AuthenticationService.updateUserNotification({
+      email: userinfo.email,
+      notification: this.notifications,
+    });
+
+    console.log("API response:", response.data);
+  } catch (error) {
+    console.error("API error:", error);
+  }
+},
     toggleCollapseOne() {
       this.collapseOne = !this.collapseOne;
     },

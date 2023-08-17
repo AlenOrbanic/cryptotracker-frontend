@@ -12,6 +12,7 @@ import AppLayout from './layout/app-layout.vue';
 import LandingPage from './layout/landing_page.vue';
 import userinfo from './stores/userinfo';
 import axios from 'axios';
+import AuthenticationService from "./services/authenticationService";
 
 export default {
   components: {
@@ -35,9 +36,25 @@ export default {
   created() {
     this.userlog();
     console.log(userinfo);
-    this.fetchCryptoPrices(); // Fetch cryptocurrency prices when component is created
+    this.fetchCryptoPrices();
+    this.fetchCryptoData();
   },
   methods: {
+    fetchCryptoData() {
+      const useremail = this.userinfo.useremail; // Assuming this is where you store the user's email
+
+      if (useremail) {
+        AuthenticationService.getCryptoData(useremail)
+          .then((response) => {
+            const cryptoData = response.data;
+            // Do something with the fetched cryptocurrency data
+            console.log("Cryptocurrency data fetched:", cryptoData);
+          })
+          .catch((error) => {
+            console.error("Error fetching cryptocurrency data:", error);
+          });
+      }
+    },
     userlog() {
       if (this.userinfo.useremail) {
         let email = this.userinfo.useremail;
