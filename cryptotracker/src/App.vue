@@ -13,6 +13,8 @@ import LandingPage from './layout/landing_page.vue';
 import userinfo from './stores/userinfo';
 import axios from 'axios';
 import AuthenticationService from "./services/authenticationService";
+import cryptovalues from './stores/cryptovalues';
+import liveprices from './stores/liveprices';
 
 export default {
   components: {
@@ -35,13 +37,16 @@ export default {
   },
   created() {
     this.userlog();
-    console.log(userinfo);
-    this.fetchCryptoPrices();
     this.fetchCryptoData();
+    this.fetchCryptoPrices();
+    setInterval(() => {
+      this.fetchCryptoPrices();
+      console.log("liveprices: ",liveprices)
+    }, 10000);
   },
   methods: {
     fetchCryptoData() {
-      const useremail = this.userinfo.useremail; // Assuming this is where you store the user's email
+      const useremail = this.userinfo.useremail;
 
       if (useremail) {
         AuthenticationService.getCryptoData(useremail)
@@ -49,6 +54,11 @@ export default {
             const cryptoData = response.data;
             // Do something with the fetched cryptocurrency data
             console.log("Cryptocurrency data fetched:", cryptoData);
+            cryptovalues.btc = cryptoData.btc;
+            cryptovalues.ethereum = cryptoData.ethereum;
+            cryptovalues.ripple = cryptoData.ripple;
+            cryptovalues.litecoin = cryptoData.litecoin;
+            cryptovalues.bitcoinDash = cryptoData.bitcoinDash;
           })
           .catch((error) => {
             console.error("Error fetching cryptocurrency data:", error);
@@ -68,6 +78,7 @@ export default {
             this.userinfo.usercurrency = userData.usercurrency;
             this.userinfo.usercurrencyfull = userData.usercurrencyfull;
             this.userinfo.notifications = userData.notifications;
+            this.userinfo.phonenum = userData.phonenum;
             console.log("User data fetched:", this.userinfo);
           })
           .catch((error) => {
@@ -75,20 +86,25 @@ export default {
           });
       }
     },
-    fetchCryptoPrices() {
-      const cryptoSymbols = ['bitcoin', 'ethereum', 'ripple', 'litecoin', 'bitcoin-cash'];
-      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoSymbols.join(',')}&vs_currencies=usd`;
+  fetchCryptoPrices() {
+  const cryptoSymbols = ['bitcoin', 'ethereum', 'ripple', 'litecoin', 'bitcoin-cash'];
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoSymbols.join(',')}&vs_currencies=usd`;
 
-      axios
-        .get(url)
-        .then((response) => {
-          this.cryptoPrices = response.data;
-          console.log("Cryptocurrency prices fetched:", this.cryptoPrices);
-        })
-        .catch((error) => {
-          console.error("Error fetching cryptocurrency prices:", error);
-        });
-    }
+  axios
+    .get(url)
+    .then((response) => {
+      this.cryptoPrices = response.data;
+      console.log("Cryptocurrency prices fetched:", this.cryptoPrices);
+      liveprices.bitcoin = this.cryptoPrices.bitcoin.usd;
+      liveprices.ethereum = this.cryptoPrices.ethereum.usd;
+      liveprices.ripple = this.cryptoPrices.ripple.usd;
+      liveprices.litecoin = this.cryptoPrices.litecoin.usd;
+      liveprices.bitcoinDash = this.cryptoPrices["bitcoin-cash"].usd;
+    })
+    .catch((error) => {
+      console.error("Error fetching cryptocurrency prices:", error);
+    });
+}
   },
   onMounted() {
     // Call the fetchCryptoPrices method again at a regular interval

@@ -75,7 +75,7 @@
             >
               <div class="info_line">
                 <h6>Phone number</h6>
-                <h6>+385 xx xxx xx</h6>
+                <input type="number" placeholder='ex. +38598809696' value="{{phonenum}}" />
               </div>
             </button>
           </h2>
@@ -87,7 +87,7 @@
           >
             <div class="accordion-body">
               <div class="change_input flex_align">Change phone number</div>
-              <a href="" class="flex_align main_btn">SAVE</a>
+              <a href="" class="flex_align main_btn" @click="updatePhoneNum()">SAVE</a>
             </div>
           </div>
         </div>
@@ -146,10 +146,18 @@ export default {
     return {
       userinfo,
       selectedImage: null,
-      profilePictureUrl: null
+      profilePictureUrl: null,
+      phonenum: '+385'
     };
   },
   methods: {
+    async updatePhoneNum(){
+      const response = await AuthenticationService.updatePhoneNumber({
+      email: this.email,
+      phonenum: this.phonenum,
+    });
+      console.log(response);
+    },
     handleImageUpload(event) {
       this.selectedImage = event.target.files[0];
     },

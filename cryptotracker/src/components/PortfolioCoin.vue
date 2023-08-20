@@ -35,7 +35,7 @@ defineProps({
     </div>
     <h1>
       {{
-        "$" + price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") || "--"
+        getFormattedPrice(price, userinfo.usercurrency) || "--"
       }}
     </h1>
     <div class="graph_img">
@@ -43,3 +43,60 @@ defineProps({
     </div>
   </div>
 </template>
+
+<script>
+import userinfo from '../stores/userinfo';
+
+const currencySymbols = {
+  USD: "$",
+  EUR: "€",
+  JPY: "¥",
+  GBP: "£",
+  INR: "₹",
+  RUB: "₽",
+  TRY: "₺",
+  PLN: "zł",
+  NOK: "kr",
+  CAD: "$",
+  AUD: "$",
+  HUF: "Ft",
+  SEK: "kr",
+  CZK: "Kč"
+};
+
+export default {
+  data() {
+    return {
+      userinfo
+    };
+  },
+  props: {
+    price: {
+      type: Number,
+      required: true,
+    },
+    pair: {
+      type: String,
+      required: true,
+    },
+    coin: {
+      type: String,
+      required: true,
+    },
+    icon: {
+      type: String,
+      required: true,
+    },
+    graph: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    getFormattedPrice(price, currencyCode) {
+      const symbol = currencySymbols[currencyCode] || "$"; // Default to "$" if currency symbol is not found
+      return `${symbol}${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+    },
+  },
+};
+</script>

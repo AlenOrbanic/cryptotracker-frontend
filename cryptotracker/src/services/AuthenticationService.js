@@ -21,5 +21,8 @@ export default {
   },
   getCryptoData(useremail) {
     return Api().get(`getCryptoData?useremail=${useremail}`);
+  },
+  updatePhoneNumber(credentials){
+    return Api().put('updatePhoneNumber', credentials);
   }
 };

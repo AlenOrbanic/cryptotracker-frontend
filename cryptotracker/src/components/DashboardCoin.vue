@@ -24,7 +24,7 @@
     </div>
     <div class="mt-10 text-20">
       {{
-        "$" + price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") || "--"
+        getFormattedPrice(price, userinfo.usercurrency) || "--"
       }}
     </div>
     <div class="graph_img coin-price-graph">
@@ -34,7 +34,31 @@
 </template>
 
 <script>
+import userinfo from '../stores/userinfo';
+
+const currencySymbols = {
+  USD: "$",
+  EUR: "€",
+  JPY: "¥",
+  GBP: "£",
+  INR: "₹",
+  RUB: "₽",
+  TRY: "₺",
+  PLN: "zł",
+  NOK: "kr",
+  CAD: "$",
+  AUD: "$",
+  HUF: "Ft",
+  SEK: "kr",
+  CZK: "Kč"
+};
+
 export default {
+  data() {
+    return {
+      userinfo
+    };
+  },
   props: {
     price: {
       type: Number,
@@ -55,6 +79,12 @@ export default {
     graph: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    getFormattedPrice(price, currencyCode) {
+      const symbol = currencySymbols[currencyCode] || "$";
+      return `${symbol}${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
     },
   },
 };

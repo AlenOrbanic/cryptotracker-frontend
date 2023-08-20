@@ -10,7 +10,8 @@ const userinfo = {
   usercurrency: 'USD',
   usercurrencyfull: 'US Dollar',
   notifications: false,
-  admin: false
+  admin: false,
+  phonenum: '+385'
 };
 
 export default userinfo;
