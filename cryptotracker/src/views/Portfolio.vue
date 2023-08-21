@@ -36,18 +36,18 @@
                   graph="https://www.coingecko.com/coins/279/sparkline.svg"
                 />
                 <PortfolioCoin
-                 :price="SOL_Price_converted"
-                  pair="SOLUSDT"
-                  coin="Solana"
+                 :price="LTC_Price_converted"
+                  pair="LTCUSDT"
+                  coin="Litecoin"
                   icon="src/assets/img/col_coin.svg"
-                  graph="https://www.coingecko.com/coins/4128/sparkline.svg"
+                  graph="https://www.coingecko.com/coins/2/sparkline.svg"
                 />
                 <PortfolioCoin
-                  :price="ADA_Price_converted"
-                  pair="ADAUSDT"
-                  coin="CARDANO"
+                  :price="XRP_Price_converted"
+                  pair="XRPUSDT"
+                  coin="Ripple"
                   icon="src/assets/img/cardano-ada-logo.png"
-                  graph="https://www.coingecko.com/coins/975/sparkline.svg"
+                  graph="https://www.coingecko.com/coins/44/sparkline.svg"
                 />
               </div>
             </div>
@@ -73,8 +73,8 @@ export default {
     return {
       BTC_Price_converted: 0,
       ETH_Price_converted: 0,
-      SOL_Price_converted: 0,
-      ADA_Price_converted: 0,
+      LTC_Price_converted: 0,
+      XRP_Price_converted: 0,
       total: 0,
       userinfo
     };
@@ -116,7 +116,7 @@ export default {
     const userCurrencyMultiplier = this.convertCurrencyToMultiplier(this.userinfo.usercurrency);
     this.BTC_Price_converted = liveprices.bitcoin * userCurrencyMultiplier;
     this.ETH_Price_converted = liveprices.ethereum * userCurrencyMultiplier;
-    this.SOL_Price_converted = liveprices.solana * userCurrencyMultiplier;
+    this.LTC_Price_converted = liveprices.litecoin * userCurrencyMultiplier;
   },
     calculatetotal(){
       console.log("liveprice eth: ", liveprices.ethereum);
@@ -136,16 +136,16 @@ export default {
           this.ETH_Price = price;
         }
       });
-      CoinDataService.getCoinData("solana").then((res) => {
-        let price = res.data.solana.usd;
+      CoinDataService.getCoinData("litecoin").then((res) => {
+        let price = res.data.litecoin.usd;
         if (typeof price == "number") {
-          this.SOL_Price = price;
+          this.LTC_Price = price;
         }
       });
-      CoinDataService.getCoinData("cardano").then((res) => {
-        let price = res.data.cardano.usd;
+      CoinDataService.getCoinData("ripple").then((res) => {
+        let price = res.data.ripple.usd;
         if (typeof price == "number") {
-          this.ADA_Price = price;
+          this.XRP_Price = price;
         }
       });
     },
