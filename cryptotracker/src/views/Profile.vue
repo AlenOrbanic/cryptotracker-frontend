@@ -19,7 +19,7 @@
             >
               <div class="info_line">
                 <h6>Display name</h6>
-                <h6>{{userinfo.username}}</h6>
+                <input type="text" v-model="newname" :placeholder="userinfo.username" />
               </div>
             </button>
           </h2>
@@ -31,7 +31,7 @@
           >
             <div class="accordion-body">
               <div class="change_input flex_align">Change display name</div>
-              <a href="" class="flex_align main_btn" @click.prevent="saveProfilePicture">SAVE</a>
+              <a href="" class="flex_align main_btn" @click.prevent="saveNewName">SAVE</a>
             </div>
           </div>
         </div>
@@ -46,8 +46,8 @@
               aria-controls="collapseTwo"
             >
               <div class="info_line">
-                <h6>Email adress</h6>
-                <h6>{{ userinfo.useremail }}</h6>
+                <h6>Email address</h6>
+                <input type="text" v-model="newemail" :placeholder="userinfo.useremail" />
               </div>
             </button>
           </h2>
@@ -58,8 +58,8 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <div class="change_input flex_align">Change email adress</div>
-              <a href="" class="flex_align main_btn">SAVE</a>
+              <div class="change_input flex_align">Change email address</div>
+              <a href="" class="flex_align main_btn" @click.prevent="saveNewEmail">SAVE</a>
             </div>
           </div>
         </div>
@@ -88,32 +88,31 @@
             <div class="accordion-body">
               <div class="change_input flex_align">Change phone number</div>
               <a href="#" class="flex_align main_btn" @click="updatePhoneNum(phonenum)" :disabled="!isValidPhoneNumber(phonenum)">SAVE</a>
-
             </div>
           </div>
         </div>
         <div class="accordion-item">
-        <h2 class="accordion-header" id="ProfilePic">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseFour"
-            aria-expanded="false"
-            aria-controls="collapseFour"
-          >
-            <div class="info_line">
-              <h6>Edit profile picture</h6>
+          <h2 class="accordion-header" id="ProfilePic">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
+            >
+              <div class="info_line">
+                <h6>Edit profile picture</h6>
                 <h6>
                   <div class="profile-picture-container">
-      <img
-        v-if="profilePictureUrl"
-        :src="profilePictureUrl"
-        alt="Profile Picture"
-        class="profile-picture"
-      />
-      <img v-else src="../assets/img/nav_dp.png" alt="User Icon" class="profile-picture" />
-    </div>
+                    <img
+                      v-if="profilePictureUrl"
+                      :src="profilePictureUrl"
+                      alt="Profile Picture"
+                      class="profile-picture"
+                    />
+                    <img v-else src="../assets/img/nav_dp.png" alt="User Icon" class="profile-picture" />
+                  </div>
                 </h6>
               </div>
             </button>
@@ -148,17 +147,19 @@ export default {
       userinfo,
       selectedImage: null,
       profilePictureUrl: null,
-      phonenum: userinfo.phonenum
+      phonenum: userinfo.phonenum,
+      newname: '',
+      newemail: ''
     };
   },
   methods: {
     async updatePhoneNum(phonenumber) {
-    const response = await AuthenticationService.updatePhoneNumber({
-      email: this.userinfo.useremail,
-      phonenum: phonenumber,
-    });
-    console.log(response);
-  },
+      const response = await AuthenticationService.updatePhoneNumber({
+        email: this.userinfo.useremail,
+        phonenum: phonenumber,
+      });
+      console.log(response);
+    },
     handleImageUpload(event) {
       this.selectedImage = event.target.files[0];
     },
@@ -197,10 +198,42 @@ export default {
         });
     },
     isValidPhoneNumber(phoneNumber) {
-    // Your validation logic here
-    const phoneNumberPattern = /^\+\d{1,4}\d{6,}$/; // Modify this pattern based on your desired format
-    return phoneNumberPattern.test(phoneNumber);
-  }
+      // Your validation logic here
+      const phoneNumberPattern = /^\+\d{1,4}\d{6,}$/; // Modify this pattern based on your desired format
+      return phoneNumberPattern.test(phoneNumber);
+    },
+    saveNewName() {
+      if (this.newname.trim() !== '') {
+        AuthenticationService.updateUserName({
+          email: this.userinfo.useremail,
+          newname: this.newname
+        })
+          .then(() => {
+            console.log('Username updated successfully!');
+            this.userinfo.username = this.newname;
+            this.newname = '';
+          })
+          .catch((error) => {
+            console.error('Error updating username:', error);
+          });
+      }
+    },
+    saveNewEmail() {
+      if (this.newemail.trim() !== '') {
+        AuthenticationService.updateUserEmail({
+          email: this.userinfo.useremail,
+          newemail: this.newemail
+        })
+          .then(() => {
+            console.log('Email updated successfully!');
+            this.userinfo.useremail = this.newemail;
+            this.newemail = '';
+          })
+          .catch((error) => {
+            console.error('Error updating email:', error);
+          });
+      }
+    },
   },
   name: "profile",
   mounted() {

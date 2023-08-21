@@ -27,5 +27,12 @@ export default {
   },
   updateCryptoValues(cryptoValues) {
     return Api().post('updateCryptoValues', cryptoValues);
+  },
+  updateUserName(data) {
+    return Api().put('updateUserName', data);
+  },
+  updateUserEmail(data) {
+    return Api().put('updateUserEmail', data);
   }
+  
 };
