@@ -5,13 +5,15 @@
       <div class="accordion" id="ProfileInfo">
         <div class="accordion-item">
           <h2 class="accordion-header position-relative" id="notify">
-            <div
-              class="toggle_container"
-              :class="notifications ? '' : 'toggled'"
-              @click="toggleNotifications"
-            >
-              <div class="toggle"></div>
-            </div>
+            <div>
+    <div
+      class="toggle_container"
+      :class="notifications ? '' : 'toggled'"
+      @click="toggleNotifications"
+    >
+      <div class="toggle"></div>
+    </div>
+  </div>
             <button
               class="accordion-button"
               :class="!collapseOne ? 'collapsed' : ''"
@@ -265,31 +267,27 @@ export default {
   mounted() {
     setTimeout(() => {
       if(userinfo.notifications === true){
-        this.notifications = !this.notifications;
+        this.notifications = 'toggled'
+      } else{
+        this.notifications = ''
       }
-    }, 1000);
+    }, 500);
   },
   methods: {
     async toggleNotifications() {
-  this.notifications = !this.notifications;
-  console.log(
-    "Before API call: userinfo.notifications ->",
-    userinfo.notifications,
-    "current notifications ->",
-    this.notifications
-  );
+      this.notifications = !this.notifications;
 
-  try {
-    const response = await AuthenticationService.updateUserNotification({
-      email: userinfo.email,
-      notification: this.notifications,
-    });
+      try {
+        const response = await AuthenticationService.updateUserNotification({
+          email: userinfo.useremail,
+          notifications: this.notifications,
+        });
 
-    console.log("API response:", response.data);
-  } catch (error) {
-    console.error("API error:", error);
-  }
-},
+        console.log("API response:", response.data);
+      } catch (error) {
+        console.error("API error:", error);
+      }
+    },
     toggleCollapseOne() {
       this.collapseOne = !this.collapseOne;
     },
@@ -323,7 +321,7 @@ console.log(response);
 };
 </script>
 
-<style scoped>
+<style>
 .term-row {
     padding-bottom: 20px;
   }
@@ -345,4 +343,5 @@ console.log(response);
   background-color: #000000;
   color: #ffffff;
 }
+
 </style>

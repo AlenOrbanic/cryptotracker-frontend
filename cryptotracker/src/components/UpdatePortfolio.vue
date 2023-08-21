@@ -22,17 +22,18 @@
   </template>
   
   <script>
-import userinfo from '../stores/userinfo';
-import AuthenticationService from '@/services/AuthenticationService';
+  import userinfo from '../stores/userinfo';
+  import AuthenticationService from '@/services/AuthenticationService';
+  
   export default {
     data() {
       return {
         cryptocurrencies: [
-          "Bitcoin (BTC)",
-          "Ethereum (ETH)",
-          "Ripple (XRP)",
-          "Litecoin (LTC)",
-          "Bitcoin Cash (BCH)"
+          "btc",
+          "ethereum",
+          "ripple",
+          "litecoin",
+          "bitcoinDash"
           // Add more cryptocurrencies as needed
         ],
         selectedCrypto: "",
@@ -40,22 +41,26 @@ import AuthenticationService from '@/services/AuthenticationService';
       };
     },
     methods: {
-      async updatePortfolio(selectedCrypto, amount) {
-  try {
-    const response = await AuthenticationService.updateUserCurrency({
-      useremail: userinfo.email,
-      [selectedCrypto]: amount,
-    });
-    console.log('API response:', response.data);
-    return response; // Return the response object
-  } catch (error) {
-    console.error('API error:', error);
-    throw error; // Rethrow the error to be handled by the caller
-  }
-},
+  async updatePortfolio() {
+    const selectedCrypto = this.selectedCrypto;
+    const amount = this.amount;
+
+    try {
+      const response = await AuthenticationService.updateCryptoValues({
+        useremail: userinfo.useremail,
+        [selectedCrypto.toLowerCase()]: amount,
+      });
+      console.log('API response:', response.data);
+      // You can perform further actions based on the response if needed
+    } catch (error) {
+      console.error('API error:', error);
+      // Handle the error as necessary
     }
+  }
+}
+
   };
-  </script>
+  </script>  
   
   <style scoped>
   /* Custom CSS to display the default placeholder text in black */

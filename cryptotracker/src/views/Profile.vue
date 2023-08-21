@@ -75,7 +75,7 @@
             >
               <div class="info_line">
                 <h6>Phone number</h6>
-                <input type="number" placeholder='ex. +38598809696' value="{{phonenum}}" />
+                <input type="text" :placeholder="'ex. ' + phonenum" v-model="phonenum" />
               </div>
             </button>
           </h2>
@@ -87,7 +87,8 @@
           >
             <div class="accordion-body">
               <div class="change_input flex_align">Change phone number</div>
-              <a href="" class="flex_align main_btn" @click="updatePhoneNum()">SAVE</a>
+              <a href="#" class="flex_align main_btn" @click="updatePhoneNum(phonenum)" :disabled="!isValidPhoneNumber(phonenum)">SAVE</a>
+
             </div>
           </div>
         </div>
@@ -147,17 +148,17 @@ export default {
       userinfo,
       selectedImage: null,
       profilePictureUrl: null,
-      phonenum: '+385'
+      phonenum: userinfo.phonenum
     };
   },
   methods: {
-    async updatePhoneNum(){
-      const response = await AuthenticationService.updatePhoneNumber({
-      email: this.email,
-      phonenum: this.phonenum,
+    async updatePhoneNum(phonenumber) {
+    const response = await AuthenticationService.updatePhoneNumber({
+      email: this.userinfo.useremail,
+      phonenum: phonenumber,
     });
-      console.log(response);
-    },
+    console.log(response);
+  },
     handleImageUpload(event) {
       this.selectedImage = event.target.files[0];
     },
@@ -175,7 +176,7 @@ export default {
             setTimeout(() => {
               this.fetchProfilePicture();
               // Reload the whole website after the profile picture is saved
-              window.location.reload();
+              //window.location.reload();
             }, 500);
           })
           .catch((error) => {
@@ -194,7 +195,12 @@ export default {
         .catch((error) => {
           console.error('Error fetching profile picture:', error);
         });
-    }
+    },
+    isValidPhoneNumber(phoneNumber) {
+    // Your validation logic here
+    const phoneNumberPattern = /^\+\d{1,4}\d{6,}$/; // Modify this pattern based on your desired format
+    return phoneNumberPattern.test(phoneNumber);
+  }
   },
   name: "profile",
   mounted() {

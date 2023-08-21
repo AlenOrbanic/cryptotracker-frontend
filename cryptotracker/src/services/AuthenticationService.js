@@ -17,12 +17,15 @@ export default {
     return Api().get(`profilePictures/${useremail}.jpg`, { responseType: 'blob' });
   },
   updateUserNotification(notificationData) {
-    return Api().put('updateUserNotification', notificationData);
+    return Api().post('updateUserNotification', notificationData);
   },
   getCryptoData(useremail) {
     return Api().get(`getCryptoData?useremail=${useremail}`);
   },
   updatePhoneNumber(credentials){
     return Api().put('updatePhoneNumber', credentials);
+  },
+  updateCryptoValues(cryptoValues) {
+    return Api().post('updateCryptoValues', cryptoValues);
   }
 };
