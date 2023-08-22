@@ -19,7 +19,7 @@
             >
               <div class="info_line">
                 <h6>Display name</h6>
-                <input type="text" v-model="newname" :placeholder="userinfo.username" />
+                <input class="custom-input" type="text" v-model="newname" :placeholder="userinfo.username" />
               </div>
             </button>
           </h2>
@@ -47,7 +47,7 @@
             >
               <div class="info_line">
                 <h6>Email address</h6>
-                <input type="text" v-model="newemail" :placeholder="userinfo.useremail" />
+                <input class="custom-input" type="text" v-model="newemail" :placeholder="userinfo.useremail" />
               </div>
             </button>
           </h2>
@@ -75,7 +75,7 @@
             >
               <div class="info_line">
                 <h6>Phone number</h6>
-                <input type="text" :placeholder="'ex. ' + phonenum" v-model="phonenum" />
+                <input class="custom-input" type="text" :placeholder="'ex. ' + phonenum" v-model="phonenum" />
               </div>
             </button>
           </h2>
@@ -277,4 +277,21 @@ export default {
     height: 60px;
   }
 }
+
+.custom-input {
+border-radius: 10px;
+padding: 8px 12px;
+border: 1px solid #ced4da;
+border-radius: 0.375rem;
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+
+.custom-input:focus {
+border-color: #86b7fe;
+outline: 0;
+box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
 </style>

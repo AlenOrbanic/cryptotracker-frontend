@@ -17,9 +17,13 @@
                       />
                       <p>Balance</p>
                     </div>
-                    <img src="../assets/img/eye.svg" alt="" />
+                    <img src="../assets/img/eye.svg" alt="" v-on:click="hideTotalPriceFunc" class="cursor-pointer"/>
                   </div>
-                  <h1>{{total}} {{userinfo.usercurrency}}</h1>
+                  <h1>
+                    {{ hideTotalPrice ? getFormattedPrice(total) : "*******" }}
+                  </h1>
+
+
                 </div>
                 <PortfolioCoin
                   :price="BTC_Price_converted"
@@ -39,14 +43,14 @@
                  :price="LTC_Price_converted"
                   pair="LTCUSDT"
                   coin="Litecoin"
-                  icon="src/assets/img/col_coin.svg"
+                  icon="src/assets/img/litecoin-ltc-logo.svg"
                   graph="https://www.coingecko.com/coins/2/sparkline.svg"
                 />
                 <PortfolioCoin
                   :price="XRP_Price_converted"
                   pair="XRPUSDT"
                   coin="Ripple"
-                  icon="src/assets/img/cardano-ada-logo.png"
+                  icon="src/assets/img/xrp-xrp-logo.svg"
                   graph="https://www.coingecko.com/coins/44/sparkline.svg"
                 />
               </div>
@@ -54,7 +58,7 @@
           </section>
           <!-- coins balance end -->
         </div>
-    <UpdatePortfolio />
+    <UpdatePortfolio height="normal"  />
       </div>
     </div>
   </div>
@@ -71,6 +75,7 @@ import userinfo from "../stores/userinfo";
 export default {
   data() {
     return {
+      hideTotalPrice: true, 
       BTC_Price_converted: 0,
       ETH_Price_converted: 0,
       LTC_Price_converted: 0,
@@ -90,6 +95,17 @@ export default {
     }, 200);
   },
   methods: {
+    hideTotalPriceFunc: function () { //add this func
+this.hideTotalPrice = !this.hideTotalPrice;
+console.log("hideTotalPrice", this.hideTotalPrice);
+},
+
+
+
+getFormattedPrice(price) { //add this func
+const symbol = "$";
+return `${symbol}${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+},
     convertCurrencyToMultiplier(userCurrency) {
     const currencyMultipliers = {
       USD: 1,

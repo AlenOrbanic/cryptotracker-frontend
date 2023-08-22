@@ -9,9 +9,10 @@
               <img src="../assets/img/wallet.svg" alt="" class="head_img" />
               <p>Balance</p>
             </div>
-            <img src="../assets/img/eye.svg" alt="" />
+            <img src="../assets/img/eye.svg" alt="" v-on:click="hideTotalPriceFunc" class="cursor-pointer"/>
           </div>
-          <h1>{{total}} {{userinfo.usercurrency}}</h1>
+          <h1>
+            {{ hideTotalPrice ? getFormattedPrice(total) : "*******" }}</h1>
         </div>
         <DashboardCoin
           :price="BTC_Price_converted"
@@ -22,15 +23,16 @@
         />
         <DashboardCoin
           :price="ETH_Price_converted"
-          pair="ETHUSDT"
+          pair="ETH/USDT"
           coin="Ethereum"
           icon="src/assets/img/eth_coin.svg"
           graph="https://www.coingecko.com/coins/279/sparkline.svg"
         />
         <DashboardCoin
           :price="LTC_Price_converted"
+          pair="LTC/USDT"
           coin="Litecoin"
-          icon="src/assets/img/col_coin.svg"
+          icon="src/assets/img/litecoin-ltc-logo.svg"
           graph="https://www.coingecko.com/coins/825/sparkline.svg"
         />
       </div>
@@ -48,23 +50,19 @@
           </div>
         </div>
       </div>
-      <UpdatePortfolio />
+      <UpdatePortfolio height="max"/>
     </div>
   </div>
   <!-- char portfolio section end -->
   <!-- Assets news section start  -->
   <div class="container">
-    <div class="row flex-row-reverse custom_gap">
-      <div class="col-xl-8">
-        <div class="lastest_news">
-          <h5>Latest news</h5>
-          <div class="cryptohopper-web-widget" data-id="5" data-news_count="3"></div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+<div class="lastest_news">
+<h5>Latest news</h5>
+<div class="cryptohopper-web-widget" data-id="5" data-news_count="3"></div>
+</div>
+</div>
   <!-- Assets news section end -->
+  
 </template>
 
 <script>
@@ -79,6 +77,7 @@ import userinfo from "../stores/userinfo";
 export default {
   data() {
     return {
+      hideTotalPrice: true,
       BTC_Price_converted: 0,
       ETH_Price_converted: 0,
       LTC_Price_converted: 0,
@@ -97,6 +96,9 @@ export default {
     }, 200);
   },
   methods: {
+    hideTotalPriceFunc: function () { //add this func
+this.hideTotalPrice = !this.hideTotalPrice;
+console.log("hideTotalPrice", this.hideTotalPrice); },
     convertCurrencyToMultiplier(userCurrency) {
     const currencyMultipliers = {
       USD: 1,
@@ -118,6 +120,10 @@ export default {
     const multiplier = currencyMultipliers[userCurrency] || 1;
     return multiplier;
   },
+  getFormattedPrice(price) { //add this func
+const symbol = "$";
+return `${symbol}${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+},
 
   convert() {
     const userCurrencyMultiplier = this.convertCurrencyToMultiplier(this.userinfo.usercurrency);

@@ -9,6 +9,9 @@
 .text-20 {
   font-size: 20px;
 }
+.font-bold {
+font-weight: bold;
+}
 </style>
 
 <template>
@@ -22,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-10 text-20">
+    <div class="mt-10 text-20 font-bold">
       {{
         getFormattedPrice(price, userinfo.usercurrency) || "--"
       }}
