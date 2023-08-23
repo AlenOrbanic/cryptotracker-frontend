@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <div class="calculator_inner">
-            <div class="update_portfolio width_fit">
+            <div class="update_portfolio width_fit" style="display: block;">
               <h5 class="mb-4">Convert your cryptocurrencies here</h5>
               <div class="custom-select-wrapper mb-4">
                 <select v-model="selectedCrypto" class="form-select custom-select-placeholder">

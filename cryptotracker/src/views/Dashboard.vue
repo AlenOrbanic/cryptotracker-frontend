@@ -64,7 +64,12 @@
   <!-- Assets news section end -->
   
 </template>
+<style>
 
+  .pull-right {
+    visibility: hidden;
+  }
+</style>
 <script>
 import DashboardCoin from "../components/DashboardCoin.vue";
 import UpdatePortfolio from "../components/UpdatePortfolio.vue";

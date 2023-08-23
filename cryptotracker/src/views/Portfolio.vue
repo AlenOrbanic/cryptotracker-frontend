@@ -133,6 +133,7 @@ return `${symbol}${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
     this.BTC_Price_converted = liveprices.bitcoin * userCurrencyMultiplier;
     this.ETH_Price_converted = liveprices.ethereum * userCurrencyMultiplier;
     this.LTC_Price_converted = liveprices.litecoin * userCurrencyMultiplier;
+    this.XRP_Price_converted = liveprices.ripple * userCurrencyMultiplier;
   },
     calculatetotal(){
       console.log("liveprice eth: ", liveprices.ethereum);

@@ -160,7 +160,20 @@ h6 {
   background-color: #fff;
   border-radius: 40px 0px 0px 40px;
   border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
+
+.custom-content {
+  height: 89vh;
+  overflow-y: scroll;
+  }
+ 
+  .footer-content {
+  height: 10vh;
+  background: #F2F8FF; 
+  }  
 
 .main_logo img {
   max-width: 60px;
@@ -1171,4 +1184,13 @@ cursor: pointer;
     height: 200px;
     background: #3380ff;
     }
-}
+
+.h-full {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+
+
+  }

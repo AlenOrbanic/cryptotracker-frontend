@@ -40,17 +40,7 @@
             </div>
             <form action="#" @submit.prevent="signupRequest" id="signup-form">
               <h1>Create Account</h1>
-              <div class="social-container">
-                <a href="https://www.facebook.com/" class="social"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a href="https://www.google.com/" class="social"
-                  ><i class="fab fa-google-plus-g"></i
-                ></a>
-                <a href="https://www.linkedin.com/" class="social"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </div>
+              
               <span>using your email for registration</span>
               <input type="text" v-model="username" placeholder="Username" />
               <input type="email" id="regmail" v-model="email" placeholder="Email" />
@@ -87,17 +77,7 @@
             </div>
             <form action="#" @submit.prevent="login" id="login-form">
               <h1>Sign in</h1>
-              <div class="social-container">
-                <a href="https://www.facebook.com/" class="social"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a href="https://www.google.com/" class="social"
-                  ><i class="fab fa-google-plus-g"></i
-                ></a>
-                <a href="https://www.linkedin.com/" class="social"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </div>
+             
               <span>using your account</span>
               <input type="email" placeholder="Email" v-model="email" id="email" />
               <input
@@ -145,6 +125,7 @@
       </template>
       
       <style scoped>
+    
      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
       * {
         box-sizing: border-box;
@@ -410,6 +391,9 @@
           --gradient:linear-gradient(90deg, var(--purple), var(--pink));
       }
       
+      </style>
+      <style >
+      @import '../assets/css/landingPage.css';
       </style>
     
     <script>

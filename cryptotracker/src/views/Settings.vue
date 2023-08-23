@@ -228,7 +228,7 @@
 >
   <div class="info_line">
     <h6>Contact us</h6>
-    <h6 class="clr_blue">cryptotracker@net.hr</h6>
+    <h6 class="clr_blue">info@cryptotracker.com</h6>
   </div>
 </button>
           </h2>
@@ -315,7 +315,7 @@ console.log(response);
       }
     },
     sendEmail() {
-      window.location = "mailto:cryptotracker@net.hr";
+      window.location = "mailto:info@cryptotracker.com";
     }
   }
 };

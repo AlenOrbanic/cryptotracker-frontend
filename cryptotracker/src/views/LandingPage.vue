@@ -147,7 +147,7 @@
             <div class="box">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="@/assets/img/landing/images/pic2.png" alt="">
+                    <img src="@/assets/img/landing/images/pic2.jpg" alt="">
                     <h3>Alen O.</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -164,7 +164,7 @@
             <div class="box">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="@/assets/img/landing/images/pic3.png" alt="">
+                    <img src="@/assets/img/landing/images/pic3.jpg" alt="">
                     <h3>Mihael B.</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -198,7 +198,7 @@
             <div class="box">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="@/assets/img/landing/images/pic3.png" alt="">
+                    <img src="@/assets/img/landing/images/pic4.jpg" alt="">
                     <h3>Josip S.</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -216,7 +216,7 @@
             <div class="box">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="@/assets/img/landing/images/pic2.png" alt="">
+                    <img src="@/assets/img/landing/images/pic5.jpg" alt="">
                     <h3>Thomas S.</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -234,7 +234,7 @@
             <div class="box">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="@/assets/img/landing/images/pic3.png" alt="">
+                    <img src="@/assets/img/landing/images/pic6.jpg" alt="">
                     <h3>Alan B.</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
