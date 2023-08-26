@@ -126,8 +126,7 @@ console.log("hideTotalPrice", this.hideTotalPrice); },
     return multiplier;
   },
   getFormattedPrice(price) { //add this func
-const symbol = "$";
-return `${symbol}${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+return `${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")} ${userinfo.usercurrency}`;
 },
 
   convert() {

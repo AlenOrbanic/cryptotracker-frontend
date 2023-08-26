@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export default () =>{
+export default () => {
     return axios.create({
-        baseURL: 'http://localhost:8000/api'
-    })
+        baseURL: 'https://cryptotracker-872g.onrender.com/api'
+    });
 }
