@@ -26,7 +26,7 @@
   
   <script>
   import userinfo from '../stores/userinfo';
-  import AuthenticationService from '@/services/AuthenticationService';
+  import authenticationService from '@/services/authenticationService';
   
   
   
@@ -61,10 +61,8 @@
   const selectedCrypto = this.selectedCrypto;
   const amount = this.amount;
   
-  
-  
   try {
-  const response = await AuthenticationService.updateCryptoValues({
+  const response = await authenticationService.updateCryptoValues({
   useremail: userinfo.useremail,
   [selectedCrypto.toLowerCase()]: amount,
   });
