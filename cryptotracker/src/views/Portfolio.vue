@@ -11,13 +11,13 @@
                   <div class="box_head">
                     <div class="flex_align">
                       <img
-                        src="../assets/img/wallet.svg"
+                        src="../assets/img/wallet.png"
                         alt=""
                         class="head_img"
                       />
                       <p>Balance</p>
                     </div>
-                    <img src="../assets/img/eye.svg" alt="" v-on:click="hideTotalPriceFunc" class="cursor-pointer"/>
+                    <img src="../assets/img/eye.png" alt="" v-on:click="hideTotalPriceFunc" class="cursor-pointer"/>
                   </div>
                   <h1>
                     {{ hideTotalPrice ? getFormattedPrice(total) : "*******" }}
@@ -29,28 +29,28 @@
                   :price="BTC_Price_converted"
                   pair="BTC/USDT"
                   coin="bitcoin"
-                  icon="src/assets/img/coin1.svg"
+                  icon="src/assets/img/bitcoin.png"
                   graph="https://www.coingecko.com/coins/1/sparkline.svg"
                 />
                 <PortfolioCoin
                   :price="ETH_Price_converted"
                   pair="ETHUSDT"
                   coin="Ethereum"
-                  icon="src/assets/img/eth_coin.svg"
+                  icon="src/assets/img/ethereum.png"
                   graph="https://www.coingecko.com/coins/279/sparkline.svg"
                 />
                 <PortfolioCoin
                  :price="LTC_Price_converted"
                   pair="LTCUSDT"
                   coin="Litecoin"
-                  icon="src/assets/img/litecoin-ltc-logo.svg"
+                  icon="src/assets/img/litecoin.png"
                   graph="https://www.coingecko.com/coins/2/sparkline.svg"
                 />
                 <PortfolioCoin
                   :price="XRP_Price_converted"
                   pair="XRPUSDT"
                   coin="Ripple"
-                  icon="src/assets/img/xrp-xrp-logo.svg"
+                  icon="src/assets/img/ripple.png"
                   graph="https://www.coingecko.com/coins/44/sparkline.svg"
                 />
               </div>

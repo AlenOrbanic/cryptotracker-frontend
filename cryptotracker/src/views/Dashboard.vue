@@ -6,33 +6,33 @@
         <div class="balance_box">
           <div class="box_head">
             <div class="flex_align">
-              <img src="../assets/img/wallet.svg" alt="" class="head_img" />
+              <img src="../assets/img/wallet.png" alt="" class="head_img" />
               <p>Balance</p>
             </div>
-            <img src="../assets/img/eye.svg" alt="" v-on:click="hideTotalPriceFunc" class="cursor-pointer"/>
+            <img src="../assets/img/eye.png" alt="" v-on:click="hideTotalPriceFunc" class="cursor-pointer"/>
           </div>
           <h1>
             {{ hideTotalPrice ? getFormattedPrice(total) : "*******" }}</h1>
         </div>
         <DashboardCoin
-          :price="BTC_Price_converted"
+          :price="BTC_Price_converted"  
           pair="BTC/USDT"
           coin="bitcoin"
-          icon="src/assets/img/coin1.svg"
+          icon="src/assets/img/bitcoin.png"
           graph="https://www.coingecko.com/coins/1/sparkline.svg"
         />
         <DashboardCoin
           :price="ETH_Price_converted"
           pair="ETH/USDT"
           coin="Ethereum"
-          icon="src/assets/img/eth_coin.svg"
+          icon="src/assets/img/ethereum.png"
           graph="https://www.coingecko.com/coins/279/sparkline.svg"
         />
         <DashboardCoin
           :price="LTC_Price_converted"
           pair="LTC/USDT"
           coin="Litecoin"
-          icon="src/assets/img/litecoin-ltc-logo.svg"
+          icon="src/assets/img/litecoin.png"
           graph="https://www.coingecko.com/coins/825/sparkline.svg"
         />
       </div>
