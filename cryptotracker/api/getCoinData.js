@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,9 +18,9 @@ const getCoinData = async (req, res) => {
   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`;
 
   try {
-    const response = await fetch(url); // Use Fetch API
-    const data = await response.json();
-    res.status(200).json(data);
+    const fetchResponse = await fetch(url);
+    const fetchJson = await fetchResponse.json();
+    res.status(200).json(fetchJson);
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while fetching data.' });
   }
