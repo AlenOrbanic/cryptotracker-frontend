@@ -203,7 +203,7 @@ async convert() {
 
   mounted() {
     const script1 = document.createElement("script");
-    script1.src = "https://cryptotracker-frontend-ennc.vercel.app/tradingview.js";
+    script1.src = "https://cryptotracker-frontend.vercel.app/tradingview.js";
     document.head.appendChild(script1);
     const script3 = document.createElement("script");
     script3.src = "https://www.cryptohopper.com/widgets/js/script";

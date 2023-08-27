@@ -24,4 +24,6 @@ const getCoinData = async (req, res) => {
   }
 };
 
-export default allowCors(getCoinData);
+export default allowCors(async (req, res) => {
+  await getCoinData(req, res);
+});
