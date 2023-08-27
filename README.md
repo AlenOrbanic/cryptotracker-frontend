@@ -8,12 +8,12 @@ Mentor: [doc.dr.sc. Nikola Tanković](https://www.notion.so/Kontakt-stranica-875
 
 ## Opis
 
-CryptoTracker je aplikacija zamišljena da se unutar nje vrlo jednostavno mogu pratiti cijene kriptovaluta, te količina kriptovaluta koju mi posjedujemo i njihova vrijednost iskazana u FIAT valutama. Aplikacija se sastoji od live pregleda cijene valuta, side menua na kojem možemo izabrati razne kriptovalute, vlastitog portfolia te njegove vrijednosti kroz vrijeme, aktualnih vijesti te postavki. Unutar same aplikacije moći ćemo postaviti i remindere koji će služiti kao obavještenja ukoliko cijena izabrane kriptovalute pređe određeni nivo cijene.
+CryptoTracker je aplikacija osmišljena kako bi omogućila jednostavno praćenje cijena kriptovaluta, kao i količine kriptovaluta koje posjedujemo i njihove vrijednosti iskazane u FIAT valutama. Aplikacija uključuje prikaz uživo grafikona, nadzorne ploče na kojima su prikazane razne kriptovalute, osobni portfelj, aktualne vijesti, postavke i kalkulator za kriptovalute. Unutar same aplikacije također je moguće promijeniti FIAT valute. Prilikom pokretanja aplikacije prvi put, korisnici se nalaze na početnoj stranici s gumbom "Prijava", putem kojeg mogu pristupiti stranicama za prijavu ili registraciju. Nakon prijave, korisnicima je omogućen pristup značajkama aplikacije.
 
 ### Autori i zaduženja
 
-- **Luka Brodarič** (lbrodaric@unipu.hr) - redizajn frontenda aplikacije, izarada sidebar-a, promjena api-a za aktualne novosti, izrada backend-a pomoću MongoDB-a
-- **Alen Orbanić** (aorbanic@unipu.hr) - implementaciija dark theme-a, mogučnost uređenja profila korisnika, dodavanje api-a za cijenu kriptovaluta te admin panel-a, izrada backend-a pomoću MongoDB-a
+- **Luka Brodarič** (lbrodaric@unipu.hr) - redizajn frontenda aplikacije, izrada sidebar menu-a, promjena api-a koji je koriste u aplikaciji, izrada backend-a pomoću MongoDB-a
+- **Alen Orbanić** (aorbanic@unipu.hr) - mogućnost uređenja profila korisnika, spajanje kalkulatora za kriptovalute, izrada backend-a pomoću MongoDB-a, povezivanje backend i frontend dijela aplikacije, hosting aplikacije
 
 ### Prototip aplikacije
 
@@ -21,4 +21,12 @@ _Figma:_ https://www.figma.com/proto/53yeQnddfi9WiPndZxOB6q/CryptoTracker_final?
 
 ### Javni link na aplikaciju:
 
-_WEB:_ 
+_WEB:_ https://cryptotracker-frontend.vercel.app/
+
+### Frontend repozitorij aplikacije:
+
+_GITHUB:_ https://github.com/LukaBrodaric/cryptotracker-frontend
+
+### Backend repozitorij aplikacije:
+
+_GITHUB:_ https://github.com/LukaBrodaric/cryptotracker-backend

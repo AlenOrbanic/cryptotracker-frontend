@@ -38,7 +38,7 @@
           >
             <div class="accordion-body">
               <h6>
-                ok
+                Enable this if you want to receive news and updates about CryptoTracker on your email address.
               </h6>
             </div>
           </div>
