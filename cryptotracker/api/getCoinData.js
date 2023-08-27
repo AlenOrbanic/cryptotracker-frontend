@@ -1,5 +1,3 @@
-// api/getCoinData.js
-
 const fetch = require('node-fetch');
 
 const allowCors = fn => async (req, res) => {
@@ -17,7 +15,7 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res);
 };
 
-const handler = async (req, res) => {
+const getCoinData = async (req, res) => {
   const coinId = req.query.coinId; // Read the coin ID from the query parameters
   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`;
 
@@ -30,4 +28,5 @@ const handler = async (req, res) => {
   }
 };
 
-module.exports = allowCors(handler);
+// Export the handler function with CORS middleware
+module.exports = allowCors(getCoinData);

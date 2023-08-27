@@ -87,7 +87,8 @@ export default {
       ETH_Price_converted: 0,
       LTC_Price_converted: 0,
       total: 0,
-      userinfo
+      userinfo,
+      coinData: null,
     };
   },
   components: {
