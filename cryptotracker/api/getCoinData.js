@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -29,5 +29,4 @@ const getCoinData = async (req, res) => {
 };
 
 // Export the handler function with CORS middleware
-module.exports = allowCors(getCoinData);
-export default getCoinData;
+export default allowCors(getCoinData);
