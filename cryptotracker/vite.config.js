@@ -12,4 +12,9 @@ export default defineConfig({
       'vue': 'vue/dist/vue.esm-browser.js'
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['node-fetch'],
+    },
+  },
 });

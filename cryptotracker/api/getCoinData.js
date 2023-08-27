@@ -16,11 +16,11 @@ const allowCors = fn => async (req, res) => {
 };
 
 const getCoinData = async (req, res) => {
-  const coinId = req.query.coinId; // Read the coin ID from the query parameters
+  const coinId = req.query.coinId;
   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url); // Use Fetch API
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {
@@ -28,5 +28,4 @@ const getCoinData = async (req, res) => {
   }
 };
 
-// Export the handler function with CORS middleware
 export default allowCors(getCoinData);
