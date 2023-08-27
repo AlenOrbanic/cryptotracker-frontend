@@ -56,14 +56,13 @@
   <!-- char portfolio section end -->
   <!-- Assets news section start  -->
   <div class="container">
-<div class="lastest_news">
-<h5>Latest news</h5>
-<div class="cryptohopper-web-widget" data-id="5" data-news_count="3"></div>
-</div>
-</div>
+    <div class="lastest_news">
+      <h5>Latest news</h5>
+      <div class="cryptohopper-web-widget" data-id="5" data-news_count="3"></div>
+    </div>
+  </div>
   <!-- Assets news section end -->
-  
-</template>
+</template> 
 <style>
 
   .pull-right {
@@ -78,6 +77,7 @@ import AuthenticationService from "../services/authenticationService";
 import cryptovalues from "../stores/cryptovalues";
 import liveprices from "../stores/liveprices";
 import userinfo from "../stores/userinfo";
+import getCoinData from "../../api/getCoinData";
 
 export default {
   data() {
@@ -128,13 +128,17 @@ console.log("hideTotalPrice", this.hideTotalPrice); },
   getFormattedPrice(price) { //add this func
 return `${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")} ${userinfo.usercurrency}`;
 },
+async convert() {
+      const userCurrencyMultiplier = this.convertCurrencyToMultiplier(this.userinfo.usercurrency);
+      this.BTC_Price_converted = liveprices.bitcoin * userCurrencyMultiplier;
+      this.ETH_Price_converted = liveprices.ethereum * userCurrencyMultiplier;
+      this.LTC_Price_converted = liveprices.litecoin * userCurrencyMultiplier;
 
-  convert() {
-    const userCurrencyMultiplier = this.convertCurrencyToMultiplier(this.userinfo.usercurrency);
-    this.BTC_Price_converted = liveprices.bitcoin * userCurrencyMultiplier;
-    this.ETH_Price_converted = liveprices.ethereum * userCurrencyMultiplier;
-    this.LTC_Price_converted = liveprices.litecoin * userCurrencyMultiplier;
-  },
+      // Fetch Coingecko data for DashboardCoin components
+      await this.fetchAndSetCoinData("bitcoin", "BTC_Price_converted");
+      await this.fetchAndSetCoinData("ethereum", "ETH_Price_converted");
+      await this.fetchAndSetCoinData("litecoin", "LTC_Price_converted");
+    },
     calculatetotal(){
       console.log("liveprice eth: ", liveprices.ethereum);
       console.log("data eth: ", cryptovalues.ethereum);
@@ -180,6 +184,11 @@ return `${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")} ${userinfo
         }
       });
     },
+    async fetchAndSetCoinData(coinId, priceProperty) {
+      const response = await getCoinData(coinId); // Use the imported function
+      const data = await response.json();
+      this[priceProperty] = data && data.usd;
+    },
   },
   async beforeMount() {
     const script3 = document.createElement("script");
@@ -193,7 +202,7 @@ return `${price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")} ${userinfo
 
   mounted() {
     const script1 = document.createElement("script");
-    script1.src = "http://localhost:5173/tradingview.js";
+    script1.src = "https://cryptotracker-frontend-ennc.vercel.app/tradingview.js";
     document.head.appendChild(script1);
     const script3 = document.createElement("script");
     script3.src = "https://www.cryptohopper.com/widgets/js/script";
