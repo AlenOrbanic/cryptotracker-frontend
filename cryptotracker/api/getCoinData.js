@@ -30,3 +30,4 @@ const getCoinData = async (req, res) => {
 
 // Export the handler function with CORS middleware
 module.exports = allowCors(getCoinData);
+export default getCoinData;
